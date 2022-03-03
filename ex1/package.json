@@ -1,10 +1,10 @@
 {
-  "name": "tp",
+  "name": "ex1",
   "version": "1.0.0",
   "description": "",
-  "main": "pokemon.ts",
+  "main": "index.js",
   "scripts": {
-    "start": "node pokemon.ts"
+    "start": "tsc && node dist/index.js"
   },
   "author": "",
   "license": "ISC",

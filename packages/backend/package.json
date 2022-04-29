@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "pokemon-backend",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -7,18 +7,19 @@
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "nest build",
+    "build-app": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
+    "start": "node dist/main",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
-    "lint": "eslint \"{src,apps,libs,test,scripts}/**/*.ts\" --fix",
+    "lint:fix": "eslint \"{src,apps,libs,test,scripts}/**/*.ts\" --fix",
+    "lint": "eslint \"{src,apps,libs,test,scripts}/**/*.ts\"",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
+    "deploy": "rimraf heroku && npm run build-app && mkdir heroku && cp package.json heroku/ && cp -r dist heroku/ && cd heroku && git init && git config --global user.email 'l.vandenbossche.jouvet@gmail.com' && git config --global user.name 'Loïc Vanden Bossche' && git remote add heroku https://heroku:%npm_config_heroku_api_key%@git.heroku.com/pokemon-ultimate-battle.git && git add . && git commit -m \"Deploy\" && git push --force heroku master",
     "generate:pokemons": "ts-node ./scripts/generate.ts"
   },
   "dependencies": {
@@ -32,7 +33,8 @@
     "cli-progress": "^3.10.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "webpack": "^5.72.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",

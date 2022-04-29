@@ -100,10 +100,13 @@ const retrieveAll = async (): Promise<void> => {
   }
 
   const progress = new Bar({
-    format: 'Pokemons retrieving |' + colors.yellow('{bar}') + '| {percentage}% || {value}/{total} Pokemons || {currentChunk}/{totalChunks} Chunks',
+    format:
+      'Pokemons retrieving |' +
+      colors.yellow('{bar}') +
+      '| {percentage}% || {value}/{total} Pokemons || {currentChunk}/{totalChunks} Chunks',
     barCompleteChar: '\u2588',
     barIncompleteChar: '\u2591',
-    hideCursor: true
+    hideCursor: true,
   });
 
   const chunkSize = 50;
@@ -133,7 +136,7 @@ const retrieveAll = async (): Promise<void> => {
 
         await axios.get<any>(pokemon.url).then((response) => {
           progress.update(++processedPokemons, {
-            currentChunk
+            currentChunk,
           });
           return formatOne(response.data)
             .then((pokemon) => {
@@ -141,7 +144,7 @@ const retrieveAll = async (): Promise<void> => {
             })
             .catch((err) => {
               fs.writeFileSync(filePath + '.error', err.message);
-            })
+            });
         });
       }),
     );

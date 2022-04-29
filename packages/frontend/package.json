@@ -1,5 +1,5 @@
 {
-  "name": "pokemon",
+  "name": "pokemon-frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

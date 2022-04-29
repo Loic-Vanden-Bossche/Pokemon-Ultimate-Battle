@@ -111,4 +111,7 @@ jobs:
         run: npm ci
 
       - name: Deploy frontend
-        run: npm run deploy
+        uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.2
+        with:
+          github_access_token: ${{ secrets.GH_TOKEN }}
+          base_href: /Pokemon-Ultimate-Battle/

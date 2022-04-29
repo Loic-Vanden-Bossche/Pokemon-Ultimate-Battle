@@ -55,6 +55,9 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
+      - name: Build app
+        run: npm run build-app
+
       - name: Deploy backend
         run: git config --global user.email "l.vandenbossche.jouvet@gmail.com" |
           git config --global user.name "Loïc Vanden Bossche" |

@@ -1,5 +1,8 @@
 name: Pokemon-Ulitmate-Battle-Deploys
-on: push
+on:
+  push:
+    branches:
+      - staging
 jobs:
   deploy-backend:
     runs-on: ubuntu-20.04

@@ -91,6 +91,8 @@ jobs:
 
   deploy-frontend:
     runs-on: ubuntu-20.04
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
     defaults:
       run:
         working-directory: ./packages/frontend
@@ -111,7 +113,4 @@ jobs:
         run: npm ci
 
       - name: Deploy frontend
-        uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.2
-        with:
-          github_access_token: ${{ secrets.GH_TOKEN }}
-          base_href: /Pokemon-Ultimate-Battle/
+        run: npm run deploy

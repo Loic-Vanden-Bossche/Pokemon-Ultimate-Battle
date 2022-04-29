@@ -12,13 +12,10 @@ import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.compo
     AppComponent,
     PokedexComponent,
     ArenaComponent,
-    PokemonDetailsComponent
+    PokemonDetailsComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

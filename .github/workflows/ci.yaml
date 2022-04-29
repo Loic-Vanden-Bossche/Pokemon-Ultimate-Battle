@@ -80,6 +80,9 @@ jobs:
       - name: Run build test
         run: npm run build
 
+      - name: Lint code
+        run: npm run lint
+
       - name: Run jasmine tests
         run: npm run test:headless
 

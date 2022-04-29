@@ -16,12 +16,14 @@ export class PokemonsService {
       throw new HttpException('Pokemons not retrieved.', HttpStatus.NOT_FOUND);
     }
 
-    const fileList = fs.readdirSync(this.pokemonsPath);
-    return fileList
-      .filter((file) => file.endsWith('.json'))
+    return this.list()
       .map((file) =>
-        JSON.parse(fs.readFileSync(path.join(this.pokemonsPath, file), 'utf8')),
+        JSON.parse(fs.readFileSync(path.join(this.pokemonsPath, file, '.json'), 'utf8')),
       );
+  }
+
+  list(): string[] {
+    return fs.readdirSync(this.pokemonsPath).filter((file) => file.endsWith('.json')).map((file) => file.replace('.json', ''));
   }
 
   findOne(name: string): Pokemon {

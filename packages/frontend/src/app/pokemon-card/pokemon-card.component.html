@@ -1,0 +1,10 @@
+<div class="card-container">
+  <div *ngIf="pokemonDetails" class="card">
+    <div class="card-content">
+      <div class="card-content-image">
+        <img [src]="pokemonDetails.frontSprite" alt="">
+      </div>
+      <h1>{{ pokemonDetails.name }}</h1>
+    </div>
+  </div>
+</div>

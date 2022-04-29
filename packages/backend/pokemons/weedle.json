@@ -1,0 +1,1 @@
+{"id":13,"name":"weedle","height":3,"abilities":[{"name":"Écran Poudre"},{"name":"Fuite"}],"items":[],"attack":35,"defense":35,"specialAttack":20,"specialDefense":20,"types":[{"id":7,"name":"bug"},{"id":4,"name":"poison"}],"frontSprite":"http://play.pokemonshowdown.com/sprites/ani/weedle.gif","backSprite":"http://play.pokemonshowdown.com/sprites/ani-back/weedle.gif"}

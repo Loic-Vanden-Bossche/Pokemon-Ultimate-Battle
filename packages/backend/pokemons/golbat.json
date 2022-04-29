@@ -1,0 +1,1 @@
+{"id":42,"name":"golbat","height":16,"abilities":[{"name":"Attention"},{"name":"Infiltration"}],"items":[],"attack":80,"defense":80,"specialAttack":65,"specialDefense":75,"types":[{"id":4,"name":"poison"},{"id":3,"name":"flying"}],"frontSprite":"http://play.pokemonshowdown.com/sprites/ani/golbat.gif","backSprite":"http://play.pokemonshowdown.com/sprites/ani-back/golbat.gif"}

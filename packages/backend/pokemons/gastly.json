@@ -1,0 +1,1 @@
+{"id":92,"name":"gastly","height":13,"abilities":[{"name":"Lévitation"}],"items":[],"attack":35,"defense":35,"specialAttack":100,"specialDefense":35,"types":[{"id":8,"name":"ghost"},{"id":4,"name":"poison"}],"frontSprite":"http://play.pokemonshowdown.com/sprites/ani/gastly.gif","backSprite":"http://play.pokemonshowdown.com/sprites/ani-back/gastly.gif"}

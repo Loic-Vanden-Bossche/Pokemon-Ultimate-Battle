@@ -1,0 +1,1 @@
+{"id":500,"name":"emboar","height":16,"abilities":[{"name":"Brasier"},{"name":"Téméraire"}],"items":[],"attack":123,"defense":123,"specialAttack":100,"specialDefense":65,"types":[{"id":10,"name":"fire"},{"id":2,"name":"fighting"}],"frontSprite":"http://play.pokemonshowdown.com/sprites/ani/emboar.gif","backSprite":"http://play.pokemonshowdown.com/sprites/ani-back/emboar.gif"}

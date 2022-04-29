@@ -59,13 +59,7 @@ jobs:
         run: npm run build-app
 
       - name: Deploy backend
-        run: git config --global user.email "l.vandenbossche.jouvet@gmail.com" |
-          git config --global user.name "Loïc Vanden Bossche" |
-          npx rimraf heroku && mkdir heroku && cp package.json heroku/ && cp -r dist heroku/ && cd heroku |
-          git init |
-          git remote add heroku "https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/pokemon-ultimate-battle.git" |
-          git add . && git commit -m "Deploy" |
-          git push --force heroku master
+        run: npm run deploy --heroku-api-key=${HEROKU_API_KEY}
 
   tests-frontend:
     runs-on: ubuntu-20.04

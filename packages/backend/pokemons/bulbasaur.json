@@ -1,0 +1,1 @@
+{"id":1,"name":"bulbasaur","height":7,"abilities":[{"name":"Engrais"},{"name":"Chlorophylle"}],"items":[],"attack":49,"defense":49,"specialAttack":65,"specialDefense":65,"types":[{"id":12,"name":"grass"},{"id":4,"name":"poison"}],"frontSprite":"http://play.pokemonshowdown.com/sprites/ani/bulbasaur.gif","backSprite":"http://play.pokemonshowdown.com/sprites/ani-back/bulbasaur.gif"}

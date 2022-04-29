@@ -1,0 +1,1 @@
+{"id":110,"name":"weezing","height":12,"abilities":[{"name":"Lévitation"},{"name":"Gaz Inhibiteur"},{"name":"Puanteur"}],"items":[],"attack":90,"defense":90,"specialAttack":85,"specialDefense":70,"types":[{"id":4,"name":"poison"}],"frontSprite":"http://play.pokemonshowdown.com/sprites/ani/weezing.gif","backSprite":"http://play.pokemonshowdown.com/sprites/ani-back/weezing.gif"}

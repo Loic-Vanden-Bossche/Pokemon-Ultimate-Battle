@@ -1,0 +1,1 @@
+{"id":101,"name":"electrode","height":12,"abilities":[{"name":"Anti-Bruit"},{"name":"Statik"},{"name":"Boom Final"}],"items":[],"attack":50,"defense":50,"specialAttack":80,"specialDefense":80,"types":[{"id":13,"name":"electric"}],"frontSprite":"http://play.pokemonshowdown.com/sprites/ani/electrode.gif","backSprite":"http://play.pokemonshowdown.com/sprites/ani-back/electrode.gif"}

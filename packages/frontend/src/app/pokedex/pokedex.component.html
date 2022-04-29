@@ -1,1 +1,12 @@
-<p>pokedex works!</p>
+<div class="pokedex-container">
+  <div class="pokemon-list">
+    <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="scroll-viewport">
+      <div class="virtual-scroll">
+        <div *cdkVirtualFor="let name of pokemonNames" class="pokemon-card">
+          <app-pokemon-card [pokemonName]="name">
+          </app-pokemon-card>
+        </div>
+      </div>
+    </cdk-virtual-scroll-viewport>
+  </div>
+</div>

@@ -4,11 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "npx ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "test:headless": "ng test --watch=false --browsers=ChromeHeadless",
-    "deploy": "ng deploy --base-href=/Pokemon-Ultimate-Battle/"
+    "test": "npx ng test",
+    "test:headless": "npx ng test --watch=false --browsers=ChromeHeadless",
+    "deploy": "npx ng deploy --base-href=/Pokemon-Ultimate-Battle/"
   },
   "private": true,
   "dependencies": {

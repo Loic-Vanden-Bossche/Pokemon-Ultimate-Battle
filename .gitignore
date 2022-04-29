@@ -6,6 +6,8 @@ tmp
 out-tsc
 bazel-out
 
+heroku
+
 # Node
 node_modules
 npm-debug.log

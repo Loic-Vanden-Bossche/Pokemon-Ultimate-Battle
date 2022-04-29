@@ -19,7 +19,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "deploy": "rimraf heroku && npm run build-app && mkdir heroku && cp package.json heroku/ && cp -r dist heroku/ && cd heroku && git init && git remote add heroku https://heroku:%npm_config_heroku_api_key%@git.heroku.com/pokemon-ultimate-battle.git && git add . && git commit -m \"Deploy\" && git push --force heroku master",
+    "deploy": "rimraf heroku && npm run build-app && mkdir heroku && cp package.json heroku/ && cp -r dist heroku/ && cd heroku && git init && git config --global user.email 'l.vandenbossche.jouvet@gmail.com' && git config --global user.name 'Loïc Vanden Bossche' && git remote add heroku https://heroku:%npm_config_heroku_api_key%@git.heroku.com/pokemon-ultimate-battle.git && git add . && git commit -m \"Deploy\" && git push --force heroku master",
     "generate:pokemons": "ts-node ./scripts/generate.ts"
   },
   "dependencies": {

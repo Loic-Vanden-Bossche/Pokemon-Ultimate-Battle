@@ -59,7 +59,7 @@ jobs:
         run: npm run build-app
 
       - name: Deploy backend
-        run: npm run deploy --heroku-api-key=${HEROKU_API_KEY}
+        run: npm run deploy --heroku-api-key=${{ secrets.HEROKU_API_KEY }}
 
   tests-frontend:
     runs-on: ubuntu-20.04

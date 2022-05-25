@@ -26,6 +26,10 @@ export class PokemonCardComponent implements OnInit, OnDestroy {
       });
   }
 
+  getPokemonSpriteUrl(name: string): string {
+    return this.pokemonService.getPokemonSpriteUrl(name);
+  }
+
   ngOnDestroy(): void {
     this._destroy.next();
     this._destroy.complete();

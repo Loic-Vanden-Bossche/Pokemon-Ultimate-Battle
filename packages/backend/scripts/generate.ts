@@ -17,7 +17,7 @@ interface PokemonAPIResponse {
   results: PokemonAPIResult[];
 }
 
-const pokemonsPath = path.join(process.cwd(), 'pokemons');
+const pokemonsPath = path.join(process.cwd(), 'pokemons-data');
 
 const getAbilities = async (abilitiesUrls: string[]): Promise<Ability[]> => {
   const rawAbilities = await Promise.all(

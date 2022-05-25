@@ -9,6 +9,9 @@ import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.compo
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { PokemonsSelectorComponent } from './pokemons-selector/pokemons-selector.component';
+import { SelectorToolbarComponent } from './pokemons-selector/selector-toolbar/selector-toolbar.component';
+import { PokemonListComponent } from './pokemons-selector/pokemon-list/pokemon-list.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,9 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     ArenaComponent,
     PokemonDetailsComponent,
     PokemonCardComponent,
+    PokemonsSelectorComponent,
+    SelectorToolbarComponent,
+    PokemonListComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, ScrollingModule],
   providers: [],

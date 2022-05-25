@@ -15,6 +15,8 @@ export class PokemonsService {
   }
 
   getPokemonSpriteUrl(name: string, isBack = false): string {
-    return `${environment.apiUrl}/pokemons/${name}/gif/${isBack ? 'back' : 'front'}`;
+    return `${environment.apiUrl}/pokemons/${name}/gif/${
+      isBack ? 'back' : 'front'
+    }`;
   }
 }

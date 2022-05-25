@@ -21,10 +21,9 @@ const initializeSwagger = (app: INestApplication) => {
 const whitelist = (origin, callback) => {
   if (
     !origin ||
-    [
-      'http://localhost:4200',
-      'https://loic-vanden-bossche.github.io',
-    ].indexOf(origin) !== -1
+    ['http://localhost:4200', 'https://loic-vanden-bossche.github.io'].indexOf(
+      origin,
+    ) !== -1
   ) {
     console.log('origin: ' + origin);
     callback(null, true);

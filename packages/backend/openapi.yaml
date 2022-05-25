@@ -11,7 +11,7 @@ paths:
   /pokemons:
     get:
       operationId: PokemonsController_findAll
-      summary: Get all pokemons
+      summary: Get all pokemons-data
       parameters: []
       responses:
         "200":

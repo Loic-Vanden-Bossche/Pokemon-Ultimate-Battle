@@ -9,7 +9,7 @@ import { Pokemon } from './pokemon';
 export class PokemonsService {
   constructor(private readonly http: HttpService) {}
 
-  pokemonsPath = path.join(process.cwd(), 'pokemons');
+  pokemonsPath = path.join(process.cwd(), 'pokemons-data');
 
   findAll(): Pokemon[] {
     if (!fs.existsSync(this.pokemonsPath)) {
@@ -24,6 +24,10 @@ export class PokemonsService {
   }
 
   list(): string[] {
+    if (!fs.existsSync(this.pokemonsPath)) {
+      throw new HttpException('Pokemons not retrieved.', HttpStatus.NOT_FOUND);
+    }
+
     return fs
       .readdirSync(this.pokemonsPath)
       .filter((file) => file.endsWith('.json'))

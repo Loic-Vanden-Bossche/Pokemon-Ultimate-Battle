@@ -7,7 +7,7 @@ export class PokemonsController {
   constructor(private readonly pokemonsService: PokemonsService) {}
 
   @Get()
-  @ApiOperation({ summary: 'Get all pokemons' })
+  @ApiOperation({ summary: 'Get all pokemons-data' })
   findAll(): any {
     return this.pokemonsService.findAll();
   }

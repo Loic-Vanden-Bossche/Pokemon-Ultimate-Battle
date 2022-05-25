@@ -23,7 +23,7 @@ const whitelist = (origin, callback) => {
     !origin ||
     [
       'http://localhost:4200',
-      'https://loic-vanden-bossche.github.io/Pokemon-Ultimate-Battle',
+      'https://loic-vanden-bossche.github.io',
     ].indexOf(origin) !== -1
   ) {
     console.log('origin: ' + origin);

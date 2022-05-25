@@ -13,4 +13,8 @@ export class PokemonsService {
   getPokemonData(name: string): Observable<Pokemon> {
     return this.http.get<Pokemon>(`${environment.apiUrl}/pokemons/${name}`);
   }
+
+  getPokemonSpriteUrl(name: string, isBack = false): string {
+    return `${environment.apiUrl}/pokemons/${name}/gif/${isBack ? 'back' : 'front'}`;
+  }
 }

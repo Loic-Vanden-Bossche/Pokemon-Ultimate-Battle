@@ -1,7 +1,7 @@
 import { Controller, Get, Param, StreamableFile } from '@nestjs/common';
 import { PokemonsService } from './pokemons.service';
 import { ApiOperation } from '@nestjs/swagger';
-import { firstValueFrom, map } from "rxjs";
+import { firstValueFrom, map } from 'rxjs';
 
 @Controller('pokemons')
 export class PokemonsController {
@@ -28,12 +28,20 @@ export class PokemonsController {
   @Get('/:name/gif/front')
   @ApiOperation({ summary: 'Get front sprite for a specific pokemon' })
   async frontSprite(@Param('name') name: string) {
-    return firstValueFrom(this.pokemonsService.frontSprite(name).pipe(map(buffer => new StreamableFile(buffer))));
+    return this.pokemonsService
+      .backSprite(name)
+      .then((o) =>
+        firstValueFrom(o.pipe(map((buffer) => new StreamableFile(buffer)))),
+      );
   }
 
   @Get('/:name/gif/back')
   @ApiOperation({ summary: 'Get back sprite for a specific pokemon' })
   async backSprite(@Param('name') name: string) {
-    return firstValueFrom(this.pokemonsService.frontSprite(name).pipe(map(buffer => new StreamableFile(buffer))));
+    return this.pokemonsService
+      .frontSprite(name)
+      .then((o) =>
+        firstValueFrom(o.pipe(map((buffer) => new StreamableFile(buffer)))),
+      );
   }
 }

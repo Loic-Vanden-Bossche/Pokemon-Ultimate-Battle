@@ -39,7 +39,7 @@ const getAbilities = async (abilitiesUrls: string[]): Promise<Ability[]> => {
 
 const getTypes = (types: any[]): PokemonType[] => {
   return types.map((t) => ({
-    id: parseInt(new RegExp(/\/[0-9]*\/$/).exec(t.url)[0].replace(/\//gm, '')),
+    id: parseInt(new RegExp(/\/\d*\/$/).exec(t.url)[0].replace(/\//gm, '')),
     name: t.name,
   }));
 };
@@ -139,8 +139,8 @@ const retrieveAll = async (): Promise<void> => {
             currentChunk,
           });
           return formatOne(response.data)
-            .then((pokemon) => {
-              fs.writeFileSync(filePath, JSON.stringify(pokemon));
+            .then((formattedPokemon) => {
+              fs.writeFileSync(filePath, JSON.stringify(formattedPokemon));
             })
             .catch((err) => {
               fs.writeFileSync(filePath + '.error', err.message);

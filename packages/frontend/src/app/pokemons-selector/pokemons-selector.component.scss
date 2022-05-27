@@ -1,3 +1,14 @@
 .selector-container {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  height: 100vh;
 
+  .pokedex-container {
+    width: 80%;
+  }
+
+  .pokemon-lists-container {
+    flex-grow: 1;
+  }
 }

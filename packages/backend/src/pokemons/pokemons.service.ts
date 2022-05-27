@@ -4,6 +4,7 @@ import { HttpService } from '@nestjs/axios';
 import * as fs from 'fs';
 import * as path from 'path';
 import { Pokemon } from './pokemon';
+import { map, Observable } from "rxjs";
 
 @Injectable()
 export class PokemonsService {
@@ -46,19 +47,15 @@ export class PokemonsService {
     return JSON.parse(fs.readFileSync(filePath, 'utf8'));
   }
 
-  async frontSprite(name: string) {
-    const pokemon = await this.findOne(name);
+  frontSprite(name: string): Observable<Buffer> {
     return this.http
-      .get(pokemon.frontSprite, { responseType: 'arraybuffer' })
-      .toPromise()
-      .then((res) => Buffer.from(res.data));
+      .get(this.findOne(name).frontSprite, { responseType: 'arraybuffer' })
+      .pipe(map((res) => Buffer.from(res.data)));
   }
 
-  async backSprite(name: string): Promise<Buffer> {
-    const pokemon = await this.findOne(name);
+  backSprite(name: string): Observable<Buffer> {
     return this.http
-      .get(pokemon.backSprite, { responseType: 'arraybuffer' })
-      .toPromise()
-      .then((res) => Buffer.from(res.data));
+      .get(this.findOne(name).backSprite, { responseType: 'arraybuffer' })
+      .pipe(map((res) => Buffer.from(res.data)));
   }
 }

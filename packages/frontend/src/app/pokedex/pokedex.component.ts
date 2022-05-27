@@ -7,14 +7,20 @@ import { PokedexService } from '../services/pokedex.service';
   styleUrls: ['./pokedex.component.scss'],
 })
 export class PokedexComponent implements OnInit {
-  pokemonNames: string[] = [];
+  lines: string[][] = [];
 
   constructor(private readonly pokedexService: PokedexService) {}
 
   ngOnInit(): void {
-    console.log('test');
     this.pokedexService.getPokemons().subscribe((pokemons) => {
-      this.pokemonNames = pokemons;
+      this.lines = pokemons.reduce((acc, pokemon, index) => {
+        if (index % 3 === 0) {
+          acc.push([pokemon]);
+        } else {
+          acc[acc.length - 1].push(pokemon);
+        }
+        return acc;
+      }, [] as string[][]);
     });
   }
 }

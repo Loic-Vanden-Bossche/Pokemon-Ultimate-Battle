@@ -1,7 +1,5 @@
 .pokedex-container {
   margin: 0;
-  padding-left: 5rem;
-  padding-right: 5rem;
   height: 100vh;
 
   .pokemon-list {
@@ -14,13 +12,17 @@
       height: 100%;
 
       .virtual-scroll {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
 
-        .pokemon-card {
-          width: 300px;
-          height: 300px;
+        .grid-line {
+          display: flex;
+          justify-content: space-evenly;
+          flex-direction: row;
+          flex-wrap: nowrap;
+
+          .pokemon-card {
+            width: 300px;
+            height: 300px;
+          }
         }
       }
     }

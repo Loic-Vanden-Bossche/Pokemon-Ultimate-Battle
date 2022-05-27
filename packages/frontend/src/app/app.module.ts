@@ -12,6 +12,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { PokemonsSelectorComponent } from './pokemons-selector/pokemons-selector.component';
 import { SelectorToolbarComponent } from './pokemons-selector/selector-toolbar/selector-toolbar.component';
 import { PokemonListComponent } from './pokemons-selector/pokemon-list/pokemon-list.component';
+import { SharedModule } from "./shared/shared.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -22,9 +24,9 @@ import { PokemonListComponent } from './pokemons-selector/pokemon-list/pokemon-l
     PokemonCardComponent,
     PokemonsSelectorComponent,
     SelectorToolbarComponent,
-    PokemonListComponent,
+    PokemonListComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ScrollingModule],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, HttpClientModule, ScrollingModule, SharedModule],
   providers: [],
   bootstrap: [AppComponent],
 })

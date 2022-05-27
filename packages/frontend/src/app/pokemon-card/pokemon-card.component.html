@@ -1,10 +1,48 @@
-<div class="card-container">
-  <div *ngIf="pokemonDetails" class="card">
-    <div class="card-content">
-      <div class="card-content-image">
-        <img [src]="getPokemonSpriteUrl(pokemonDetails.name)" alt="">
+<div class="scaled-container">
+  <div
+    #cardContainer
+    class="card-container"
+    (mouseenter)="getCardParallax($event)"
+    (mouseleave)="getCardParallax($event)"
+    (mousemove)="getRotateValue($event)"
+    [ngStyle]="{
+      transform:
+        'perspective(800px)' +
+        'rotateY(' +
+        rotateXValue +
+        'deg)' +
+        'rotateX(' +
+        rotateYValue +
+        'deg)' +
+        'scale(' +
+        cardScale +
+        ')'
+    }"
+  >
+    <div class="background-container">
+      <div class="background-image-container">
+        <img
+          [ngStyle]="{
+          transform:
+            'translateX(' +
+            translateXValue +
+            'px)' +
+            'translateY(' +
+            translateYValue +
+            'px)'
+        }"
+          [src]="getBackgroundUrl()"
+          alt=""
+        />
       </div>
-      <h1>{{ pokemonDetails.name }}</h1>
+    </div>
+    <div *ngIf="pokemonDetails" class="card">
+      <div class="card-content">
+        <div class="card-content-image">
+          <img [src]="getPokemonSpriteUrl(pokemonDetails.name)" alt="" />
+        </div>
+        <h1>{{ pokemonDetails.name }}</h1>
+      </div>
     </div>
   </div>
 </div>

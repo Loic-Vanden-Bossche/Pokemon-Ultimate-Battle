@@ -24,6 +24,14 @@ paths:
       responses:
         "200":
           description: ""
+  /pokemons/types:
+    get:
+      operationId: PokemonsController_findTypes
+      summary: Get a specific pokemon by id
+      parameters: []
+      responses:
+        "200":
+          description: ""
   "/pokemons/{name}":
     get:
       operationId: PokemonsController_findOne

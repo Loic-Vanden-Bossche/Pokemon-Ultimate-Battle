@@ -1,8 +1,21 @@
-import { Component, ElementRef, Input, OnChanges, OnDestroy, ViewChild } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnDestroy,
+  ViewChild,
+} from '@angular/core';
 import { PokemonsService } from '../services/pokemons.service';
 import { Subject, takeUntil } from 'rxjs';
 import { Pokemon } from '../shared/interfaces/pokemon';
-import { animate, state, style, transition, trigger } from "@angular/animations";
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -10,25 +23,27 @@ import { animate, state, style, transition, trigger } from "@angular/animations"
   styleUrls: ['./pokemon-card.component.scss'],
   animations: [
     trigger('showHide', [
-      state('show', style({
-        opacity: 1
-      })),
-      state('hide', style({
-        opacity: 0
-      })),
-      transition('show => hide', [
-        animate('1s')
-      ]),
-      transition('hide => show', [
-        animate('0.5s')
-      ]),
+      state(
+        'show',
+        style({
+          opacity: 1,
+        }),
+      ),
+      state(
+        'hide',
+        style({
+          opacity: 0,
+        }),
+      ),
+      transition('show => hide', [animate('1s')]),
+      transition('hide => show', [animate('0.5s')]),
     ]),
   ],
 })
 export class PokemonCardComponent implements OnChanges, OnDestroy {
   @Input() pokemonName: string | null = null;
 
-  @ViewChild("cardContainer") container : ElementRef | undefined;
+  @ViewChild('cardContainer') container: ElementRef | undefined;
 
   pokemonDetails: Pokemon | null = null;
 
@@ -59,7 +74,7 @@ export class PokemonCardComponent implements OnChanges, OnDestroy {
       });
   }
 
-  resetCard () : void {
+  resetCard(): void {
     this._destroy.next();
     this._destroy.complete();
     this.gifLoaded = false;
@@ -76,17 +91,15 @@ export class PokemonCardComponent implements OnChanges, OnDestroy {
     this._destroy.complete();
   }
 
-  getRotateValue ($event : any) : void {
-
+  getRotateValue($event: any): void {
     if (!this.isParallax || !this.container) return;
 
     const position = this.container.nativeElement.getBoundingClientRect(),
-
-    mouseX = ($event.pageX - position.x - (position.width / 2)) /
-      position.width,
-
-    mouseY = ($event.pageY - (position.y + window.scrollY) -
-      (position.height / 2)) / position.height;
+      mouseX =
+        ($event.pageX - position.x - position.width / 2) / position.width,
+      mouseY =
+        ($event.pageY - (position.y + window.scrollY) - position.height / 2) /
+        position.height;
 
     this.rotateXValue = mouseX * 15;
 
@@ -97,9 +110,8 @@ export class PokemonCardComponent implements OnChanges, OnDestroy {
     this.translateYValue = mouseY * -15;
   }
 
-  getCardParallax ($event : MouseEvent) : void {
-
-    if ($event.type !== "mouseenter" || !this.container) {
+  getCardParallax($event: MouseEvent): void {
+    if ($event.type !== 'mouseenter' || !this.container) {
       this.cardScale = 1;
 
       this.rotateXValue = 0;
@@ -118,17 +130,12 @@ export class PokemonCardComponent implements OnChanges, OnDestroy {
     const width = this.container.nativeElement.getBoundingClientRect().width;
 
     if (width >= 250) {
-
       this.cardScale = 1.1;
-
     } else {
-
       this.cardScale = 250 / width;
-
     }
 
     this.isParallax = true;
-
   }
 
   getBackgroundUrl(): string {

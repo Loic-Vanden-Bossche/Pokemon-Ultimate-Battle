@@ -1,11 +1,21 @@
 <div class="pokedex-container">
   <div #pokemonList class="pokemon-list">
-    <cdk-virtual-scroll-viewport [itemSize]="cardHeight + cardPadding" class="scroll-viewport">
+    <cdk-virtual-scroll-viewport
+      [itemSize]="cardHeight + cardPadding"
+      class="scroll-viewport"
+    >
       <div class="virtual-scroll">
-        <div *cdkVirtualFor="let line of lines" [ngStyle]="{'margin-bottom': cardPadding + 'px'}" class="grid-line">
-          <div [ngStyle]="{ width: cardWidth + 'px', height: cardHeight + 'px' }" *ngFor="let name of line" class="pokemon-card">
-            <app-pokemon-card [pokemonName]="name">
-            </app-pokemon-card>
+        <div
+          *cdkVirtualFor="let line of lines"
+          [ngStyle]="{ 'margin-bottom': cardPadding + 'px' }"
+          class="grid-line"
+        >
+          <div
+            [ngStyle]="{ width: cardWidth + 'px', height: cardHeight + 'px' }"
+            *ngFor="let name of line"
+            class="pokemon-card"
+          >
+            <app-pokemon-card [pokemonName]="name"> </app-pokemon-card>
           </div>
         </div>
       </div>

@@ -1,6 +1,13 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from "@angular/core";
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { PokedexService } from '../services/pokedex.service';
-import { tap } from "rxjs";
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-pokedex',
@@ -24,18 +31,27 @@ export class PokedexComponent implements OnInit, AfterViewInit {
 
   @HostListener('window:resize', ['$event'])
   onResize() {
-    if(this.pokemonList) {
-      const columns = Math.floor(this.pokemonList.nativeElement.offsetWidth / (this.cardWidth + this.cardPadding));
+    if (this.pokemonList) {
+      const columns = Math.floor(
+        this.pokemonList.nativeElement.offsetWidth /
+          (this.cardWidth + this.cardPadding),
+      );
 
       if (columns !== this.columns) {
-        this.columns = Math.floor(this.pokemonList.nativeElement.offsetWidth / (this.cardWidth + this.cardPadding));
+        this.columns = Math.floor(
+          this.pokemonList.nativeElement.offsetWidth /
+            (this.cardWidth + this.cardPadding),
+        );
         this.updateLines();
       }
     }
   }
 
   ngOnInit(): void {
-    this.pokedexService.getPokemons().pipe(tap((pokemons) => this.pokemons = pokemons)).subscribe(() => this.updateLines());
+    this.pokedexService
+      .getPokemons()
+      .pipe(tap((pokemons) => (this.pokemons = pokemons)))
+      .subscribe(() => this.updateLines());
   }
 
   ngAfterViewInit() {

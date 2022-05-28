@@ -22,7 +22,7 @@
     <div class="loader-container" *ngIf="!pokemonDetails || !backgroundLoaded || !gifLoaded">
       <app-loader color="#ccc" [size]="40"></app-loader>
     </div>
-    <div *ngIf="pokemonDetails" [@showHide]="(!backgroundLoaded || !gifLoaded) ? 'hide' : 'show'">
+    <div *ngIf="pokemonDetails" class="details-container" [@showHide]="(!backgroundLoaded || !gifLoaded) ? 'hide' : 'show'">
       <div class="background-container">
         <div class="background-image-container">
           <img
@@ -43,7 +43,7 @@
       </div>
       <div class="card">
         <div class="card-content">
-          <div class="card-content-image">
+          <div class="card-sprite">
             <img
               [src]="getPokemonSpriteUrl(pokemonDetails.name)"
               alt=""

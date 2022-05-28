@@ -132,6 +132,6 @@ export class PokemonCardComponent implements OnChanges, OnDestroy {
   }
 
   getBackgroundUrl(): string {
-    return '../../assets/card-backgrounds/' + this.pokemonDetails?.types[0].name.toLowerCase() + '.jpg';
+    return `assets/card-backgrounds/${this.pokemonDetails?.types[0].name.toLowerCase()}.jpg`;
   }
 }

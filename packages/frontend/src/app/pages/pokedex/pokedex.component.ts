@@ -1,15 +1,17 @@
 import {
   AfterViewInit,
   Component,
-  ElementRef, EventEmitter,
+  ElementRef,
+  EventEmitter,
   HostListener,
-  OnInit, Output,
-  ViewChild
-} from "@angular/core";
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { PokedexService } from '../../shared/services/pokedex.service';
 import { tap } from 'rxjs';
-import { Pokemon } from "../../shared/interfaces/pokemon";
-import { ModalService } from "../../shared/services/modal.service";
+import { Pokemon } from '../../shared/interfaces/pokemon';
+import { ModalService } from '../../shared/services/modal.service';
 
 @Component({
   selector: 'app-pokedex',
@@ -20,7 +22,10 @@ export class PokedexComponent implements OnInit, AfterViewInit {
   lines: string[][] = [];
   pokemons: string[] = [];
 
-  @Output() pokemonSelected: EventEmitter<{ pokemon: Pokemon, isEnemy: boolean }> = new EventEmitter<{ pokemon: Pokemon, isEnemy: boolean }>();
+  @Output() pokemonSelected: EventEmitter<{
+    pokemon: Pokemon;
+    isEnemy: boolean;
+  }> = new EventEmitter<{ pokemon: Pokemon; isEnemy: boolean }>();
 
   selectedPokemon: string | null = null;
 
@@ -31,7 +36,10 @@ export class PokedexComponent implements OnInit, AfterViewInit {
 
   cardPadding = 20;
 
-  constructor(private readonly pokedexService: PokedexService, private modalService: ModalService) {}
+  constructor(
+    private readonly pokedexService: PokedexService,
+    private modalService: ModalService,
+  ) {}
 
   @ViewChild('pokemonList') pokemonList: ElementRef | undefined;
 
@@ -75,7 +83,7 @@ export class PokedexComponent implements OnInit, AfterViewInit {
     }, [] as string[][]);
   }
 
-  onPokemonSelected(data: { pokemon: Pokemon, isEnemy: boolean }) {
+  onPokemonSelected(data: { pokemon: Pokemon; isEnemy: boolean }) {
     this.pokemonSelected.emit(data);
   }
 

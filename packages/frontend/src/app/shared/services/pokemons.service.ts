@@ -21,6 +21,8 @@ export class PokemonsService {
   }
 
   getBackgroundUrl(pokemon: Pokemon | null): string | null {
-    return pokemon?.types[0].name.toLowerCase() ? `assets/card-backgrounds/${pokemon?.types[0].name.toLowerCase()}.jpg` : null;
+    return pokemon?.types[0].name.toLowerCase()
+      ? `assets/card-backgrounds/${pokemon?.types[0].name.toLowerCase()}.jpg`
+      : null;
   }
 }

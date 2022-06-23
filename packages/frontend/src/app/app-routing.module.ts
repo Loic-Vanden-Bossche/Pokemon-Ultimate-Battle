@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PokedexComponent } from './pages/pokedex/pokedex.component';
 import { ArenaComponent } from './pages/arena/arena.component';
-import { PokemonsSelectorComponent } from './pokemons-selector/pokemons-selector.component';
-import { MenuComponent } from "./pages/menu/menu.component";
+import { PokemonsSelectorComponent } from './pages/pokemons-selector/pokemons-selector.component';
+import { MenuComponent } from './pages/menu/menu.component';
 
 const routes: Routes = [
   {

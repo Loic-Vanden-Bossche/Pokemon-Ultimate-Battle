@@ -1,0 +1,43 @@
+.menu-container{
+  height: 100%;
+  width: 100%;
+
+  .menu-flex {
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 100%;
+    justify-content: space-evenly;
+
+    .main-logo {
+      height: 200px;
+      width: auto;
+      text-align: center;
+      margin: 0 auto;
+      //margin-bottom: 100px;
+    }
+
+    .menu {
+
+      position: relative;
+
+      .pkmn-img {
+        width: 130%;
+        transform: translateX(-12%);
+        height: auto;
+        position: absolute;
+        left: 0;
+        z-index: -1;
+        top: -150px;
+      }
+
+      width: 70%;
+      max-width: 400px;
+      height: 60%;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 10px ;
+    }
+  }
+}

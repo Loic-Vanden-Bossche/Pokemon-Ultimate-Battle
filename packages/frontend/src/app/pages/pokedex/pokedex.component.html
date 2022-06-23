@@ -13,6 +13,7 @@
           <div
             [ngStyle]="{ width: cardWidth + 'px', height: cardHeight + 'px' }"
             *ngFor="let name of line"
+            (click)="openModal(name)"
             class="pokemon-card"
           >
             <app-pokemon-card [pokemonName]="name"> </app-pokemon-card>
@@ -22,3 +23,8 @@
     </cdk-virtual-scroll-viewport>
   </div>
 </div>
+<app-pokemon-modal
+  (pokemonSelected)="onPokemonSelected($event)"
+  [pokemon]="selectedPokemon"
+>
+</app-pokemon-modal>

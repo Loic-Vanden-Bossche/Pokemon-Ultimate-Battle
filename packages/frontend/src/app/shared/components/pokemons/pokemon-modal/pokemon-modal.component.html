@@ -1,0 +1,14 @@
+<app-modal id="pokemonModal">
+  <div
+    class="w-10/12 h-3/4 flex flex-col flex-nowrap sm:w-3/4 md:w-2/3 xl:w-3/6 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 absolute overflow-hidden bg-gray-200 rounded drop-shadow-xl"
+  >
+    <div *ngIf="pokemonData" class="h-full bg-black">
+      <div class="fixed top-0 left-0 w-full h-full bg-center bg-cover blur-sm" [ngStyle]="{'background-image': 'url(' + getBackgroundUrl() + ')'}">
+      </div>
+      <div class="px-10 py-10 flex">
+        <img alt="" class="w-2/12 " [src]="pokemonData.frontSprite"/>
+
+      </div>
+    </div>
+  </div>
+</app-modal>

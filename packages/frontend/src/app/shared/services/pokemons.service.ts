@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Pokemon } from '../shared/interfaces/pokemon';
+import { Pokemon } from '../interfaces/pokemon';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -18,5 +18,9 @@ export class PokemonsService {
     return `${environment.apiUrl}/pokemons/${name}/gif/${
       isBack ? 'back' : 'front'
     }`;
+  }
+
+  getBackgroundUrl(pokemon: Pokemon | null): string | null {
+    return pokemon?.types[0].name.toLowerCase() ? `assets/card-backgrounds/${pokemon?.types[0].name.toLowerCase()}.jpg` : null;
   }
 }

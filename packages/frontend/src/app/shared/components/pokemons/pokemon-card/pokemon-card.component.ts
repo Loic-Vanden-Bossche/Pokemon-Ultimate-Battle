@@ -6,9 +6,9 @@ import {
   OnDestroy,
   ViewChild,
 } from '@angular/core';
-import { PokemonsService } from '../services/pokemons.service';
+import { PokemonsService } from '../../../services/pokemons.service';
 import { Subject, takeUntil } from 'rxjs';
-import { Pokemon } from '../shared/interfaces/pokemon';
+import { Pokemon } from '../../../interfaces/pokemon';
 import {
   animate,
   state,
@@ -46,9 +46,6 @@ export class PokemonCardComponent implements OnChanges, OnDestroy {
   @ViewChild('cardContainer') container: ElementRef | undefined;
 
   pokemonDetails: Pokemon | null = null;
-
-  cardScale = 1;
-
   rotateXValue = 0;
   rotateYValue = 0;
 
@@ -112,8 +109,6 @@ export class PokemonCardComponent implements OnChanges, OnDestroy {
 
   getCardParallax($event: MouseEvent): void {
     if ($event.type !== 'mouseenter' || !this.container) {
-      this.cardScale = 1;
-
       this.rotateXValue = 0;
 
       this.rotateYValue = 0;
@@ -127,18 +122,10 @@ export class PokemonCardComponent implements OnChanges, OnDestroy {
       return;
     }
 
-    const width = this.container.nativeElement.getBoundingClientRect().width;
-
-    if (width >= 250) {
-      this.cardScale = 1.1;
-    } else {
-      this.cardScale = 250 / width;
-    }
-
     this.isParallax = true;
   }
 
   getBackgroundUrl(): string {
-    return `assets/card-backgrounds/${this.pokemonDetails?.types[0].name.toLowerCase()}.jpg`;
+    return this.pokemonService.getBackgroundUrl(this.pokemonDetails) || '';
   }
 }

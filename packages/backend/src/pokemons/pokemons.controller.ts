@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Res, StreamableFile } from "@nestjs/common";
+import { Controller, Get, Param, Res, StreamableFile } from '@nestjs/common';
 import { PokemonsService } from './pokemons.service';
 import { ApiOperation } from '@nestjs/swagger';
 import { firstValueFrom, map } from 'rxjs';
@@ -23,8 +23,17 @@ export class PokemonsController {
   @Get('/types')
   @ApiOperation({ summary: 'Get a specific pokemon by id' })
   findTypes(): any {
-    return this.pokemonsService.findAll().then((pokemons) =>
-      [...new Set(pokemons.flatMap((pokemon) => pokemon.types).map((type) => type.name))].sort());
+    return this.pokemonsService
+      .findAll()
+      .then((pokemons) =>
+        [
+          ...new Set(
+            pokemons
+              .flatMap((pokemon) => pokemon.types)
+              .map((type) => type.name),
+          ),
+        ].sort(),
+      );
   }
 
   @Get('/:name')
@@ -35,7 +44,10 @@ export class PokemonsController {
 
   @Get('/:name/gif/front')
   @ApiOperation({ summary: 'Get front sprite for a specific pokemon' })
-  async frontSprite(@Param('name') name: string, @Res({ passthrough: true }) res: Response) {
+  async frontSprite(
+    @Param('name') name: string,
+    @Res({ passthrough: true }) res: Response,
+  ) {
     res.setHeader('Content-Type', 'image/gif');
     return this.pokemonsService
       .frontSprite(name)
@@ -46,7 +58,10 @@ export class PokemonsController {
 
   @Get('/:name/gif/back')
   @ApiOperation({ summary: 'Get back sprite for a specific pokemon' })
-  async backSprite(@Param('name') name: string, @Res({ passthrough: true }) res: Response) {
+  async backSprite(
+    @Param('name') name: string,
+    @Res({ passthrough: true }) res: Response,
+  ) {
     res.setHeader('Content-Type', 'image/gif');
     return this.pokemonsService
       .backSprite(name)

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import {Pokemon} from "../../shared/interfaces/pokemon";
 
 @Component({
   selector: 'app-pokemons-selector',
@@ -6,7 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pokemons-selector.component.scss'],
 })
 export class PokemonsSelectorComponent implements OnInit {
+
+  myFighter: Pokemon | null = null;
+  opponent: Pokemon | null = null;
+  imgFighter = '../assets/sacha-pikachu-pokemon.jpg';
+  imgOpponent = '../assets/regis.jpg';
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 }

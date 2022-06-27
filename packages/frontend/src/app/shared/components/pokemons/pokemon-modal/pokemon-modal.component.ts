@@ -10,7 +10,7 @@ import {
 import { ModalService } from '../../../services/modal.service';
 import { PokemonsService } from '../../../services/pokemons.service';
 import { Pokemon } from '../../../interfaces/pokemon';
-import { map, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-pokemon-modal',
@@ -50,7 +50,7 @@ export class PokemonModalComponent implements OnChanges, OnDestroy {
     this.$destroy.complete();
   }
 
-  selectPokemon(isEnemy: boolean): void {
+  selectPokemon(isEnemy = false): void {
     if (this.pokemonData) {
       this.pokemonSelected.emit({ pokemon: this.pokemonData, isEnemy });
       this.modalService.close('pokemonModal');

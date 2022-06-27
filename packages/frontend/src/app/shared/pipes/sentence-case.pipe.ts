@@ -8,7 +8,7 @@ const capitalize = (text: string) => {
   name: 'sentencecase',
 })
 export class SentenceCasePipe implements PipeTransform {
-  transform(value: any, ...args: any[]): any {
+  transform(value: any): any {
     return !isNaN(value) && typeof value !== 'string'
       ? value
       : capitalize(value);

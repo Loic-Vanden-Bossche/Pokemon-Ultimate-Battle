@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PagesModule } from "./pages/pages.module";
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [AppComponent],

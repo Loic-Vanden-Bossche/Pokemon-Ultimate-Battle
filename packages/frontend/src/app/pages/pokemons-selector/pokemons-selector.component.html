@@ -1,17 +1,12 @@
 <div class="selector-container">
   <div class="pokedex-container">
-    <app-pokedex></app-pokedex>
-    <app-selector-toolbar></app-selector-toolbar>
+    <app-pokedex (pokemonSelected)="onPokemonSelected($event)"></app-pokedex>
   </div>
-  <div class="pokemon-lists-container">
-    <div class="pokemon-list">
-      <app-pokemon-list  [backgroundImg]="imgFighter"></app-pokemon-list>
-    </div>
-    <div class="ml-40">
-      <img class="pl-15 h-20 mt-8  mr-1" src="assets/vs.jpeg">
-    </div>
-    <div class="pokemon-list">
-      <app-pokemon-list  [backgroundImg]="imgOpponent"></app-pokemon-list>
-    </div>
+  <div class="pokemon-summary">
+    <app-pokemon-selector-summary
+      (startBattle)="startBattle()"
+      [current]="current"
+      [enemy]="enemy"
+    ></app-pokemon-selector-summary>
   </div>
 </div>

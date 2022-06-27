@@ -1,5 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import {Pokemon} from "../../shared/interfaces/pokemon";
+import { Component, OnInit } from '@angular/core';
+import { Pokemon } from '../../shared/interfaces/pokemon';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PokemonsService } from '../../shared/services/pokemons.service';
+import { combineLatest, of } from 'rxjs';
 
 @Component({
   selector: 'app-pokemons-selector',
@@ -7,15 +10,43 @@ import {Pokemon} from "../../shared/interfaces/pokemon";
   styleUrls: ['./pokemons-selector.component.scss'],
 })
 export class PokemonsSelectorComponent implements OnInit {
+  current: Pokemon | null = null;
+  enemy: Pokemon | null = null;
 
-  myFighter: Pokemon | null = null;
-  opponent: Pokemon | null = null;
-  imgFighter = '../assets/sacha-pikachu-pokemon.jpg';
-  imgOpponent = '../assets/regis.jpg';
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private pokemonsService: PokemonsService,
+  ) {}
 
-  constructor() {}
+  ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      combineLatest(
+        [params['enemy'], params['current']].map((name) =>
+          name ? this.pokemonsService.getPokemonData(name) : of(null),
+        ),
+      ).subscribe((data) => {
+        this.enemy = data[0];
+        this.current = data[1];
+      });
+    });
+  }
 
-  ngOnInit(): void {
+  onPokemonSelected(data: { pokemon: Pokemon; isEnemy: boolean }) {
+    if (data.isEnemy) {
+      this.enemy = data.pokemon;
+    } else {
+      this.current = data.pokemon;
+    }
 
+    this.router.navigate([], {
+      queryParams: { enemy: this.enemy?.name, current: this.current?.name },
+    });
+  }
+
+  startBattle() {
+    this.router.navigate(['/arena'], {
+      queryParams: { enemy: this.enemy?.name, current: this.current?.name },
+    });
   }
 }

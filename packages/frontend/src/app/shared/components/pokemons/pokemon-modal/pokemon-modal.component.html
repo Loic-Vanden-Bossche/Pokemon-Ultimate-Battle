@@ -19,6 +19,8 @@
           <h1 class="text-white ml-3 text-5xl">
             {{ pokemonData.name | titlecase }}
           </h1>
+          <button (click)="selectPokemon(true)">Enemy</button>
+          <button (click)="selectPokemon()">Current</button>
         </div>
       </div>
     </div>

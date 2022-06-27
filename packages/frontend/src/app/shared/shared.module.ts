@@ -5,8 +5,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { SentenceCasePipe } from './pipes/sentence-case.pipe';
 import { PokemonModalComponent } from './components/pokemons/pokemon-modal/pokemon-modal.component';
 import { PokemonCardComponent } from './components/pokemons/pokemon-card/pokemon-card.component';
-import { SelectorToolbarComponent } from './components/selector-toolbar/selector-toolbar.component';
-import { PokemonListComponent } from './components/pokemons/pokemon-list/pokemon-list.component';
+import { PokemonSelectorSummaryComponent } from './components/pokemons/pokemon-selector-summary/pokemon-selector-summary.component';
 
 @NgModule({
   declarations: [
@@ -15,16 +14,14 @@ import { PokemonListComponent } from './components/pokemons/pokemon-list/pokemon
     SentenceCasePipe,
     PokemonModalComponent,
     PokemonCardComponent,
-    SelectorToolbarComponent,
-    PokemonListComponent,
+    PokemonSelectorSummaryComponent,
   ],
   exports: [
     LoaderComponent,
     ModalComponent,
     PokemonModalComponent,
     PokemonCardComponent,
-    SelectorToolbarComponent,
-    PokemonListComponent,
+    PokemonSelectorSummaryComponent,
   ],
   imports: [CommonModule],
 })

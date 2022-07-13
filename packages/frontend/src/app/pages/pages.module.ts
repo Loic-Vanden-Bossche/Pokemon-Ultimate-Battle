@@ -6,6 +6,7 @@ import { PokedexComponent } from './pokedex/pokedex.component';
 import { PokemonsSelectorComponent } from './pokemons-selector/pokemons-selector.component';
 import { SharedModule } from '../shared/shared.module';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,6 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     PokedexComponent,
     PokemonsSelectorComponent,
   ],
-  imports: [CommonModule, SharedModule, ScrollingModule],
+  imports: [CommonModule, SharedModule, ScrollingModule, RouterModule],
 })
 export class PagesModule {}

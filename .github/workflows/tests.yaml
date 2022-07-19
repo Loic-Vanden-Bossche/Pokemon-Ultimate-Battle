@@ -2,7 +2,7 @@ name: Pokemon-Ulitmate-Battle-Tests
 on:
   pull_request:
     branches:
-      - dev
+      - staging
 jobs:
   tests-backend:
     runs-on: ubuntu-20.04

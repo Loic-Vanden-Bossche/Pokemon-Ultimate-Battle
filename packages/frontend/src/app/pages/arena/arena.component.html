@@ -1,54 +1,80 @@
-<div
-  class="h-2/3 w-2/3 top-1/2 left-1/2 absolute -translate-y-1/2 -translate-x-1/2"
-  *ngIf="current && enemy"
->
-  <div class="h-52">
-    <div class="flex justify-end h-full">
-      <app-pokemon
-        [pokemon]="enemy"
-        [isEnemy]="true"
-        [fighter]="opponent"
-      ></app-pokemon>
+<div *ngIf="!endStatus">
+  <div
+    class="h-2/3 w-2/3 top-1/2 left-1/2 absolute -translate-y-1/2 -translate-x-1/2"
+    *ngIf="current && enemy"
+  >
+    <div class="h-52">
+      <div class="flex justify-end h-full">
+        <app-pokemon
+          [pokemon]="enemy"
+          [isEnemy]="true"
+          [fighter]="opponent"
+        ></app-pokemon>
+      </div>
+    </div>
+    <div class="absolute bottom-0 h-72">
+      <app-pokemon [pokemon]="current" [fighter]="player"></app-pokemon>
     </div>
   </div>
-  <div class="absolute bottom-0 h-72">
-    <app-pokemon [pokemon]="current" [fighter]="player"></app-pokemon>
+  <div class="font-['pokemon'] absolute bottom-0 p-4 h-36 w-full">
+    <div class="rounded shadow-2xl h-full bg-white p-2">
+      <div class="flex flex-row h-full w-full">
+        <div class="rounded text-xl text-white h-full bg-gray-600 w-1/3">
+          <h1 class="m-4">What will {{ current?.name }} do?</h1>
+        </div>
+        <div
+          *ngIf="playing"
+          class="text-white ml-2 flex-1 grid gap-2 grid-cols-2 grid-rows-2"
+        >
+          <button
+            class="rounded bg-red-500 transition-all opacity-80 hover:opacity-100"
+            (click)="attack()"
+          >
+            FIGHT
+          </button>
+          <button
+            (click)="runAway()"
+            class="rounded bg-yellow-500 transition-all opacity-80 hover:opacity-100"
+          >
+            RUN
+          </button>
+          <button
+            class="rounded bg-green-500 transition-all opacity-80 hover:opacity-100"
+          >
+            POKEMON
+          </button>
+          <button
+            routerLink="/"
+            class="rounded bg-blue-500 transition-all opacity-80 hover:opacity-100"
+          >
+            QUIT
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<div class="font-['pokemon'] absolute bottom-0 p-4 h-36 w-full">
-  <div class="rounded shadow-2xl h-full bg-white p-2">
-    <div class="flex flex-row h-full w-full">
-      <div class="rounded text-xl text-white h-full bg-gray-600 w-1/3">
-        <h1 class="m-4">What will {{ current?.name }} do?</h1>
-      </div>
-      <div
-        *ngIf="playing"
-        class="text-white ml-2 flex-1 grid gap-2 grid-cols-2 grid-rows-2"
+<div class="h-full w-full" *ngIf="endStatus">
+  <div
+    [ngClass]="['bg-' + statusColor, 'border-' + statusColor]"
+    class="p-5 font-['pokemon'] text-white flex flex-col h-2/6 rounded border-2 w-2/6 top-1/2 left-1/2 absolute -translate-y-1/2 -translate-x-1/2 bg-opacity-70"
+  >
+    <h1 class="text-3xl font-bold text-center">The fight is over</h1>
+    <div class="text-xl text-center mt-5">
+      <p *ngIf="endStatus === 'player'">You won the fight</p>
+      <p *ngIf="endStatus === 'enemy'">The enemy has overcome your pokemon</p>
+      <p *ngIf="endStatus === 'ran'">You managed to flee the fight</p>
+    </div>
+    <div class="flex mt-auto flex-row w-full justify-evenly">
+      <button
+        (click)="navigateToSelection()"
+        class="px-3 rounded bg-blue-500 h-12"
       >
-        <button
-          class="rounded bg-red-500 transition-all opacity-80 hover:opacity-100"
-          (click)="attack()"
-        >
-          FIGHT
-        </button>
-        <button
-          (click)="runAway()"
-          class="rounded bg-yellow-500 transition-all opacity-80 hover:opacity-100"
-        >
-          RUN
-        </button>
-        <button
-          class="rounded bg-green-500 transition-all opacity-80 hover:opacity-100"
-        >
-          POKEMON
-        </button>
-        <button
-          routerLink="/"
-          class="rounded bg-blue-500 transition-all opacity-80 hover:opacity-100"
-        >
-          QUIT
-        </button>
-      </div>
+        Return to selection
+      </button>
+      <button (click)="restartFight()" class="px-3 rounded bg-amber-400 h-12">
+        Redo the fight
+      </button>
     </div>
   </div>
 </div>

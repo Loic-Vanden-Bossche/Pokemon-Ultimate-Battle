@@ -21,7 +21,6 @@ export interface Pokemon {
   defense: number;
   specialAttack: number;
   specialDefense: number;
-  speed: number;
   types: PokemonType[];
   frontSprite: string;
   backSprite: string;

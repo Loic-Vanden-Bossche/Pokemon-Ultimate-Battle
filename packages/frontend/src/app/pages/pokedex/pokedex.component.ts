@@ -4,6 +4,7 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
+  Input,
   OnInit,
   Output,
   ViewChild,
@@ -21,6 +22,8 @@ import { ModalService } from '../../shared/services/modal.service';
 export class PokedexComponent implements OnInit, AfterViewInit {
   lines: string[][] = [];
   pokemons: string[] = [];
+
+  @Input() inSelector = false;
 
   @Output() pokemonSelected: EventEmitter<{
     pokemon: Pokemon;

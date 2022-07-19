@@ -1,6 +1,9 @@
 <div class="selector-container">
   <div class="pokedex-container">
-    <app-pokedex (pokemonSelected)="onPokemonSelected($event)"></app-pokedex>
+    <app-pokedex
+      [inSelector]="true"
+      (pokemonSelected)="onPokemonSelected($event)"
+    ></app-pokedex>
   </div>
   <div class="pokemon-summary">
     <app-pokemon-selector-summary

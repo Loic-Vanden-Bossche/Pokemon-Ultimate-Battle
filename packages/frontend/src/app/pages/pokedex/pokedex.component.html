@@ -24,6 +24,7 @@
   </div>
 </div>
 <app-pokemon-modal
+  [isSelectable]="inSelector"
   (pokemonSelected)="onPokemonSelected($event)"
   [pokemon]="selectedPokemon"
 >

@@ -18,6 +18,7 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class PokemonModalComponent implements OnChanges, OnDestroy {
   @Input() pokemon: string | null = null;
+  @Input() isSelectable = false;
   @Output() pokemonSelected: EventEmitter<{
     pokemon: Pokemon;
     isEnemy: boolean;
@@ -55,6 +56,17 @@ export class PokemonModalComponent implements OnChanges, OnDestroy {
       this.pokemonSelected.emit({ pokemon: this.pokemonData, isEnemy });
       this.modalService.close('pokemonModal');
     }
+  }
+
+  get types() {
+    return this.pokemonData?.types.map((type) => type.name).join(' / ') || [];
+  }
+
+  get abilities() {
+    return (
+      this.pokemonData?.abilities.map((ability) => ability.name).join(' / ') ||
+      []
+    );
   }
 
   getBackgroundUrl(): string {

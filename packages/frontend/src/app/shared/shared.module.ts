@@ -6,6 +6,7 @@ import { SentenceCasePipe } from './pipes/sentence-case.pipe';
 import { PokemonModalComponent } from './components/pokemons/pokemon-modal/pokemon-modal.component';
 import { PokemonCardComponent } from './components/pokemons/pokemon-card/pokemon-card.component';
 import { PokemonSelectorSummaryComponent } from './components/pokemons/pokemon-selector-summary/pokemon-selector-summary.component';
+import { JoinPipe } from './pipes/join.pipe';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { PokemonSelectorSummaryComponent } from './components/pokemons/pokemon-s
     PokemonModalComponent,
     PokemonCardComponent,
     PokemonSelectorSummaryComponent,
+    JoinPipe,
   ],
   exports: [
     LoaderComponent,

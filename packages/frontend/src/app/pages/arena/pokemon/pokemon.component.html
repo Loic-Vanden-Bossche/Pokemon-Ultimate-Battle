@@ -1,0 +1,13 @@
+<div class="h-full" *ngIf="fighter && pokemon">
+  <div class="h-2 w-full bg-white rounded-lg overflow-hidden -translate-y-4">
+    <div
+      class="transition-all h-full bg-red-500"
+      [ngStyle]="{ width: lifePercentage }"
+    ></div>
+  </div>
+  <img
+    class="pokemon h-full"
+    [src]="isEnemy ? pokemon.frontSprite : pokemon.backSprite"
+    alt=""
+  />
+</div>

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { forkJoin, switchMap } from 'rxjs';
 import { PokemonsService } from '../../shared/services/pokemons.service';
 import { Pokemon } from '../../shared/interfaces/pokemon';
+import { BattleService } from '../../shared/services/battle.service';
 
 @Component({
   selector: 'app-arena',
@@ -18,7 +19,28 @@ export class ArenaComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private pokemonsService: PokemonsService,
+    private battleService: BattleService,
   ) {}
+
+  get playing() {
+    return this.battleService.playerTurn;
+  }
+
+  attack(): void {
+    this.battleService.attackEnemy();
+  }
+
+  runAway(): void {
+    this.battleService.run();
+  }
+
+  get player() {
+    return this.battleService.current;
+  }
+
+  get opponent() {
+    return this.battleService.enemy;
+  }
 
   takeDamage(): void {
     this.takingDamages = true;
@@ -28,6 +50,8 @@ export class ArenaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.battleService.reset();
+
     this.route.queryParams
       .pipe(
         switchMap(({ enemy, current }) =>
@@ -41,7 +65,17 @@ export class ArenaComponent implements OnInit {
         if (enemy && current) {
           this.enemy = enemy;
           this.current = current;
+          this.battleService.registerCurrent(this.current);
+          this.battleService.registerEnemy(this.enemy);
         }
       });
+
+    this.battleService.battleEnded.subscribe((winner) => {
+      if (winner === 'enemy') {
+        alert('You lost!');
+      } else {
+        alert('You won!');
+      }
+    });
   }
 }

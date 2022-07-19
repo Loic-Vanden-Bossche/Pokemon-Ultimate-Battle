@@ -3,15 +3,16 @@
   *ngIf="current && enemy"
 >
   <div class="h-52">
-    <img class="pokemon ml-auto h-full" [src]="enemy.frontSprite" alt="" />
+    <div class="flex justify-end h-full">
+      <app-pokemon
+        [pokemon]="enemy"
+        [isEnemy]="true"
+        [fighter]="opponent"
+      ></app-pokemon>
+    </div>
   </div>
   <div class="absolute bottom-0 h-72">
-    <img
-      class="pokemon h-full"
-      [ngClass]="takingDamages ? 'pokemon-damage' : ''"
-      [src]="current.backSprite"
-      alt=""
-    />
+    <app-pokemon [pokemon]="current" [fighter]="player"></app-pokemon>
   </div>
 </div>
 <div class="font-['pokemon'] absolute bottom-0 p-4 h-36 w-full">
@@ -20,14 +21,18 @@
       <div class="rounded text-xl text-white h-full bg-gray-600 w-1/3">
         <h1 class="m-4">What will {{ current?.name }} do?</h1>
       </div>
-      <div class="text-white ml-2 flex-1 grid gap-2 grid-cols-2 grid-rows-2">
+      <div
+        *ngIf="playing"
+        class="text-white ml-2 flex-1 grid gap-2 grid-cols-2 grid-rows-2"
+      >
         <button
           class="rounded bg-red-500 transition-all opacity-80 hover:opacity-100"
-          (click)="takeDamage()"
+          (click)="attack()"
         >
           FIGHT
         </button>
         <button
+          (click)="runAway()"
           class="rounded bg-yellow-500 transition-all opacity-80 hover:opacity-100"
         >
           RUN
@@ -35,12 +40,13 @@
         <button
           class="rounded bg-green-500 transition-all opacity-80 hover:opacity-100"
         >
-          BAG
+          POKEMON
         </button>
         <button
+          routerLink="/"
           class="rounded bg-blue-500 transition-all opacity-80 hover:opacity-100"
         >
-          POKEMON
+          QUIT
         </button>
       </div>
     </div>

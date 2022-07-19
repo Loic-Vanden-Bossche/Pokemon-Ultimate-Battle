@@ -1,24 +1,47 @@
-<div class="h-2/3 w-2/3 top-1/2 left-1/2 absolute -translate-y-1/2 -translate-x-1/2" *ngIf="current && enemy">
+<div
+  class="h-2/3 w-2/3 top-1/2 left-1/2 absolute -translate-y-1/2 -translate-x-1/2"
+  *ngIf="current && enemy"
+>
   <div class="h-52">
-    <img class="pokemon ml-auto h-full" [src]="enemy.frontSprite" alt=""/>
+    <img class="pokemon ml-auto h-full" [src]="enemy.frontSprite" alt="" />
   </div>
   <div class="absolute bottom-0 h-72">
-    <img class="pokemon h-full" [ngClass]="takingDamages ? 'pokemon-damage' : ''" [src]="current.backSprite" alt=""/>
+    <img
+      class="pokemon h-full"
+      [ngClass]="takingDamages ? 'pokemon-damage' : ''"
+      [src]="current.backSprite"
+      alt=""
+    />
   </div>
 </div>
 <div class="font-['pokemon'] absolute bottom-0 p-4 h-36 w-full">
   <div class="rounded shadow-2xl h-full bg-white p-2">
     <div class="flex flex-row h-full w-full">
       <div class="rounded text-xl text-white h-full bg-gray-600 w-1/3">
-        <h1 class="m-4">
-          What will {{current?.name}} do?
-        </h1>
+        <h1 class="m-4">What will {{ current?.name }} do?</h1>
       </div>
       <div class="text-white ml-2 flex-1 grid gap-2 grid-cols-2 grid-rows-2">
-        <button class="rounded bg-red-500 transition-all opacity-80 hover:opacity-100" (click)="takeDamage()">FIGHT</button>
-        <button class="rounded bg-yellow-500 transition-all opacity-80 hover:opacity-100">RUN</button>
-        <button class="rounded bg-green-500 transition-all opacity-80 hover:opacity-100">BAG</button>
-        <button class="rounded bg-blue-500 transition-all opacity-80 hover:opacity-100">POKEMON</button>
+        <button
+          class="rounded bg-red-500 transition-all opacity-80 hover:opacity-100"
+          (click)="takeDamage()"
+        >
+          FIGHT
+        </button>
+        <button
+          class="rounded bg-yellow-500 transition-all opacity-80 hover:opacity-100"
+        >
+          RUN
+        </button>
+        <button
+          class="rounded bg-green-500 transition-all opacity-80 hover:opacity-100"
+        >
+          BAG
+        </button>
+        <button
+          class="rounded bg-blue-500 transition-all opacity-80 hover:opacity-100"
+        >
+          POKEMON
+        </button>
       </div>
     </div>
   </div>

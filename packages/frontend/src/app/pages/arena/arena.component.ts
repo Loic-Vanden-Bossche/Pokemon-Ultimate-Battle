@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin, switchMap } from 'rxjs';
 import { PokemonsService } from '../../shared/services/pokemons.service';
-import { Pokemon } from "../../shared/interfaces/pokemon";
+import { Pokemon } from '../../shared/interfaces/pokemon';
 
 @Component({
   selector: 'app-arena',
@@ -10,7 +10,6 @@ import { Pokemon } from "../../shared/interfaces/pokemon";
   styleUrls: ['./arena.component.scss'],
 })
 export class ArenaComponent implements OnInit {
-
   enemy: Pokemon | null = null;
   current: Pokemon | null = null;
 

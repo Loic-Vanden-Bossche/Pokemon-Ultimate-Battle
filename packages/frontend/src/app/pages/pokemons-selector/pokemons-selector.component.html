@@ -1,0 +1,12 @@
+<div class="selector-container">
+  <div class="pokedex-container">
+    <app-pokedex (pokemonSelected)="onPokemonSelected($event)"></app-pokedex>
+  </div>
+  <div class="pokemon-summary">
+    <app-pokemon-selector-summary
+      (startBattle)="startBattle()"
+      [current]="current"
+      [enemy]="enemy"
+    ></app-pokemon-selector-summary>
+  </div>
+</div>

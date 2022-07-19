@@ -1,0 +1,62 @@
+<div class="scaled-container">
+  <div
+    #cardContainer
+    class="card-container"
+    (mouseenter)="getCardParallax($event)"
+    (mouseleave)="getCardParallax($event)"
+    (mousemove)="getRotateValue($event)"
+    [ngStyle]="{
+      transform:
+        'perspective(800px)' +
+        'rotateY(' +
+        rotateXValue +
+        'deg)' +
+        'rotateX(' +
+        rotateYValue +
+        'deg)'
+    }"
+  >
+    <div
+      class="loader-container"
+      *ngIf="!pokemonDetails || !backgroundLoaded || !gifLoaded"
+    >
+      <app-loader color="#ccc" [size]="40"></app-loader>
+    </div>
+    <div
+      *ngIf="pokemonDetails"
+      class="details-container"
+      [@showHide]="!backgroundLoaded || !gifLoaded ? 'hide' : 'show'"
+    >
+      <div class="background-container">
+        <div class="background-image-container">
+          <img
+            [ngStyle]="{
+              transform:
+                'translateX(' +
+                translateXValue +
+                'px)' +
+                'translateY(' +
+                translateYValue +
+                'px)'
+            }"
+            [src]="getBackgroundUrl()"
+            alt=""
+            (load)="backgroundLoaded = true"
+          />
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-sprite">
+            <img
+              [src]="getPokemonSpriteUrl(pokemonDetails.name)"
+              alt=""
+              (load)="gifLoaded = true"
+            />
+          </div>
+          <h1>{{ pokemonDetails.name }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

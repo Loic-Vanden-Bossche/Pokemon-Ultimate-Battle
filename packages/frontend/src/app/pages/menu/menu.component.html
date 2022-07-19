@@ -1,11 +1,28 @@
 <div class="menu-container">
   <div class="menu-flex">
-    <img class="main-logo" alt="" src="../../../assets/logo.png" />
+    <img class="main-logo" alt="" src="assets/logo.png" />
     <div class="menu">
-      <button routerLink="pokedex">Pokédex</button>
-      <button>Mes Pokémons</button>
-      <button routerLink="selector">Battle</button>
-      <img src="../../../assets/pokemons.png" class="pkmn-img" alt="" />
+      <div class="flex py-5 h-full flex-col w-2/3 mx-auto">
+        <button
+          class="h-14 text-white text-xl font-['pokemon'] rounded w-full bg-yellow-400"
+          routerLink="pokedex"
+        >
+          Pokédex
+        </button>
+        <button
+          class="h-14 mt-5 text-white text-xl font-['pokemon'] rounded w-full bg-blue-400"
+          routerLink="selector"
+        >
+          Battle
+        </button>
+        <button
+          (click)="close()"
+          class="h-14 mt-auto text-white text-xl font-['pokemon'] rounded w-full bg-red-400"
+        >
+          Quit
+        </button>
+        <img src="assets/pokemons.png" class="pkmn-img" alt="" />
+      </div>
     </div>
   </div>
 </div>

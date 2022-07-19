@@ -1,6 +1,6 @@
 <app-modal id="pokemonModal">
   <div
-    class="w-10/12 h-3/4 flex flex-col flex-nowrap sm:w-3/4 md:w-2/3 xl:w-3/6 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 absolute overflow-hidden bg-gray-200 rounded drop-shadow-xl"
+    class="text-white w-10/12 h-3/4 flex flex-col flex-nowrap sm:w-3/4 md:w-2/3 xl:w-3/6 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 absolute overflow-hidden bg-gray-200 rounded drop-shadow-xl"
   >
     <div *ngIf="pokemonData" class="h-full bg-black">
       <div
@@ -16,11 +16,47 @@
         <img alt="" class="w-1/3" [src]="pokemonData.frontSprite" />
         <div class="h-full flex font-['pokemon']">
           <div class="h-full ml-10 opacity-75 w-1 rounded bg-white"></div>
-          <h1 class="text-white ml-3 text-5xl">
-            {{ pokemonData.name | titlecase }}
-          </h1>
-          <button (click)="selectPokemon(true)">Enemy</button>
-          <button (click)="selectPokemon()">Current</button>
+          <div class="h-full w-full px-5 flex flex-col">
+            <h1 class="text-5xl">
+              {{ pokemonData.name | titlecase }}
+            </h1>
+            <div class="mt-6 text-xl gap-2 grid grid-cols-2">
+              <p>Types :</p>
+              <p>{{ types }}</p>
+
+              <p>Height :</p>
+              <p>{{ pokemonData.height | number: '1.1-1' }} m</p>
+
+              <p>Attack :</p>
+              <p>{{ pokemonData.attack }}</p>
+
+              <p>Defense :</p>
+              <p>{{ pokemonData.defense }}</p>
+
+              <p>SpecialAttack :</p>
+              <p>{{ pokemonData.specialAttack }}</p>
+
+              <p>SpecialDefense :</p>
+              <p>{{ pokemonData.specialDefense }}</p>
+
+              <p>Abilities :</p>
+              <p>{{ abilities }}</p>
+            </div>
+            <div class="mt-auto" *ngIf="isSelectable">
+              <button
+                class="rounded px-3 h-12 mr-5 bg-red-500"
+                (click)="selectPokemon(true)"
+              >
+                Add as enemy
+              </button>
+              <button
+                class="rounded px-3 h-12 bg-green-500"
+                (click)="selectPokemon()"
+              >
+                Add as current
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

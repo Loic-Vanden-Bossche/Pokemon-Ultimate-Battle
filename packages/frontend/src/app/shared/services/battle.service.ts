@@ -102,6 +102,7 @@ export class BattleService {
 
   run() {
     if (this._playerTurn) {
+      this._playerTurn = false;
       this._pushLog('You try to run away...');
       const success = Math.random() > 0.5;
       if (success) {
@@ -109,7 +110,9 @@ export class BattleService {
         this._battleEnded.next('ran');
       } else {
         this._pushLog('You failed to run away!');
-        this._enemyAttack();
+        setTimeout(() => {
+          this._enemyAttack();
+        }, 1000);
       }
     }
   }

@@ -25,6 +25,7 @@ export class BattleService {
   private _playerTurn = false;
 
   fightLogs: string[] = [];
+  started = false;
 
   get enemy(): Fighter | null {
     return this._enemy;
@@ -64,6 +65,8 @@ export class BattleService {
       if (!this._playerTurn) {
         this._enemyAttack();
       }
+
+      this.started = true;
     }
   }
 
@@ -98,6 +101,7 @@ export class BattleService {
     this._enemy = null;
     this._current = null;
     this._playerTurn = false;
+    this.started = false;
     this.fightLogs = [];
   }
 

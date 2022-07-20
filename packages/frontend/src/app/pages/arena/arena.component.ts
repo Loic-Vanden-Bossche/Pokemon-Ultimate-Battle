@@ -10,7 +10,6 @@ import { animate, style, transition, trigger } from '@angular/animations';
 @Component({
   selector: 'app-arena',
   templateUrl: './arena.component.html',
-  styleUrls: ['./arena.component.scss'],
   animations: [
     trigger('onPlayable', [
       transition(':enter', [

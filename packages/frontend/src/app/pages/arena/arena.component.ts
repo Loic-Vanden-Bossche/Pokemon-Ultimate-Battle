@@ -119,7 +119,9 @@ export class ArenaComponent implements OnInit {
       });
 
     this.battleService.battleEnded.subscribe((status) => {
-      this.endStatus = status;
+      setTimeout(() => {
+        this.endStatus = status;
+      }, 2000);
     });
 
     this.player?.attacking.subscribe();

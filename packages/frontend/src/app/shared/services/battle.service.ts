@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Pokemon } from '../interfaces/pokemon';
-import { Subject } from 'rxjs';
+import { Subject, tap } from "rxjs";
 
 export interface Fighter {
   name: string;
@@ -84,6 +84,7 @@ export class BattleService {
             `You lost the fight with ${this._enemy.currentHP}hp remaining!`,
           );
           this._battleEnded.next('enemy');
+          return;
         }
 
         setTimeout(() => {

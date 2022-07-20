@@ -8,8 +8,8 @@
   <div class="pokemon-summary">
     <app-pokemon-selector-summary
       (startBattle)="startBattle()"
-      [current]="current"
-      [enemy]="enemy"
+      [current]="f.get('current')?.value"
+      [enemy]="f.get('enemy')?.value"
     ></app-pokemon-selector-summary>
   </div>
 </div>

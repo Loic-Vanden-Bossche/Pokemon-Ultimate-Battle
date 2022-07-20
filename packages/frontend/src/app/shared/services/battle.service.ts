@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Pokemon } from '../interfaces/pokemon';
-import { Subject, tap } from "rxjs";
+import { Subject } from 'rxjs';
 
 export interface Fighter {
   name: string;

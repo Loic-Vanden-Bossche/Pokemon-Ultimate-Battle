@@ -9,6 +9,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { RouterModule } from '@angular/router';
 import { PokemonComponent } from './arena/pokemon/pokemon.component';
 import { LoggerComponent } from './arena/logger/logger.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,13 @@ import { LoggerComponent } from './arena/logger/logger.component';
     PokemonComponent,
     LoggerComponent,
   ],
-  imports: [CommonModule, SharedModule, ScrollingModule, RouterModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    ScrollingModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class PagesModule {}

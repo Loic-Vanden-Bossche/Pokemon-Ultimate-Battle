@@ -5,11 +5,39 @@ import { PokemonsService } from '../../shared/services/pokemons.service';
 import { Pokemon } from '../../shared/interfaces/pokemon';
 import { BattleService } from '../../shared/services/battle.service';
 import { ModalService } from '../../shared/services/modal.service';
+import { animate, style, transition, trigger } from "@angular/animations";
 
 @Component({
   selector: 'app-arena',
   templateUrl: './arena.component.html',
   styleUrls: ['./arena.component.scss'],
+  animations: [
+    trigger(
+      "onPlayable",
+      [
+        transition(
+          ":enter",
+          [
+            style({ "opacity": 0, "max-width": 0, "max-height": 0 }),
+            animate(
+              "0.5s ease",
+              style({ "opacity": 1, "max-width": "100%", "max-height": "100%" })
+            )
+          ]
+        ),
+        transition(
+          ":leave",
+          [
+            style({ "opacity": 1 }),
+            animate(
+              "0.5s ease",
+              style({ "opacity": 0 })
+            )
+          ]
+        )
+      ]
+    )
+  ]
 })
 export class ArenaComponent implements OnInit {
   enemy: Pokemon | null = null;
@@ -105,6 +133,10 @@ export class ArenaComponent implements OnInit {
 
     this.battleService.battleEnded.subscribe((status) => {
       this.endStatus = status;
+    });
+
+    this.player?.attacking.subscribe(() => {
+
     });
   }
 }

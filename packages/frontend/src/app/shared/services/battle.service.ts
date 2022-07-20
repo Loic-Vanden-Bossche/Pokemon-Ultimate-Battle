@@ -72,14 +72,14 @@ export class BattleService {
       this._enemy.attacking.next();
       this._current.defending.next();
 
-      this.fightLogs.push(
+      this._pushLog(
         `${this._enemy.name} attacked you with ${this._enemy.attack} damage!`,
       );
 
       this._current.currentHP -= this._enemy.attack;
       if (this._current.currentHP <= 0) {
         this._current.currentHP = 0;
-        this.fightLogs.push(
+        this._pushLog(
           `You lost the fight with ${this._enemy.currentHP}hp remaining!`,
         );
         this._battleEnded.next('enemy');
@@ -96,15 +96,19 @@ export class BattleService {
     this.fightLogs = [];
   }
 
+  _pushLog(log: string) {
+    this.fightLogs = [...this.fightLogs, log];
+  }
+
   run() {
     if (this._playerTurn) {
-      this.fightLogs.push('You try to run away...');
+      this._pushLog('You try to run away...');
       const success = Math.random() > 0.5;
       if (success) {
-        this.fightLogs.push('You successfully ran away!');
+        this._pushLog('You successfully ran away!');
         this._battleEnded.next('ran');
       } else {
-        this.fightLogs.push('You failed to run away!');
+        this._pushLog('You failed to run away!');
         this._enemyAttack();
       }
     }
@@ -116,7 +120,7 @@ export class BattleService {
       this._current.attacking.next();
       this._enemy.defending.next();
 
-      this.fightLogs.push(
+      this._pushLog(
         `You attacked ${this._enemy.name} with ${this._current.attack} damage!`,
       );
 
@@ -124,26 +128,26 @@ export class BattleService {
 
       if (this._enemy.currentHP <= 0) {
         this._enemy.currentHP = 0;
-        this.fightLogs.push(
+        this._pushLog(
           `You won the fight with ${this._current.currentHP}hp remaining!`,
         );
         this._battleEnded.next('player');
       } else {
         setTimeout(() => {
           this._enemyAttack();
-        }, 500);
+        }, 1000);
       }
     }
   }
 
   registerEnemy(pokemon: Pokemon) {
-    this.fightLogs.push(`${pokemon.name} appeared!`);
+    this._pushLog(`${pokemon.name} appeared!`);
     this._enemy = this._pokemonToFighter(pokemon);
     this._checkStart();
   }
 
   registerCurrent(pokemon: Pokemon) {
-    this.fightLogs.push(`You chose ${pokemon.name} to fight!`);
+    this._pushLog(`You chose ${pokemon.name} to fight!`);
     this._current = this._pokemonToFighter(pokemon);
     this._checkStart();
   }

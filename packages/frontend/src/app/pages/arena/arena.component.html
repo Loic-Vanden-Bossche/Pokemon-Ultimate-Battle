@@ -1,5 +1,5 @@
 <div *ngIf="!endStatus">
-  <div class="absolute bg-white left-5 top-5 h-32 w-72">
+  <div class="absolute z-10 left-5 top-5 h-52 w-96">
     <app-logger [logs]="logs"></app-logger>
   </div>
   <div
@@ -19,14 +19,13 @@
       <app-pokemon [pokemon]="current" [fighter]="player"></app-pokemon>
     </div>
   </div>
-  <div class="font-['pokemon'] absolute bottom-0 p-4 h-36 w-full">
+  <div *ngIf="playing" @onPlayable class="font-['pokemon'] overflow-hidden absolute bottom-0 p-4 h-36 w-full">
     <div class="rounded shadow-2xl h-full bg-white p-2">
       <div class="flex flex-row h-full w-full">
         <div class="rounded text-xl text-white h-full bg-gray-600 w-1/3">
           <h1 class="m-4">What will {{ current?.name }} do?</h1>
         </div>
         <div
-          *ngIf="playing"
           class="text-white ml-2 flex-1 grid gap-2 grid-cols-2 grid-rows-2"
         >
           <button
@@ -48,7 +47,8 @@
             POKEMON
           </button>
           <button
-            routerLink="/"
+            routerLink="/selector"
+            [queryParams]="{current: current?.name, enemy: enemy?.name}"
             class="rounded bg-blue-500 transition-all opacity-80 hover:opacity-100"
           >
             QUIT

@@ -8,8 +8,8 @@ export interface Fighter {
   currentHP: number;
   attack: number;
   defense: number;
-  attacking: Subject<void>;
-  defending: Subject<void>;
+  attacking: Subject<'left' | 'right'>;
+  defending: Subject<number>;
 }
 
 @Injectable({
@@ -68,25 +68,29 @@ export class BattleService {
   }
 
   private _enemyAttack() {
-    if (this._enemy && this._current && !this._playerTurn) {
-      this._enemy.attacking.next();
-      this._current.defending.next();
+    setTimeout(() => {
+      if (this._enemy && this._current && !this._playerTurn) {
+        this._enemy.attacking.next('left');
+        this._current.defending.next(this._enemy.attack);
 
-      this._pushLog(
-        `${this._enemy.name} attacked you with ${this._enemy.attack} damage!`,
-      );
-
-      this._current.currentHP -= this._enemy.attack;
-      if (this._current.currentHP <= 0) {
-        this._current.currentHP = 0;
         this._pushLog(
-          `You lost the fight with ${this._enemy.currentHP}hp remaining!`,
+          `${this._enemy.name} attacked you with ${this._enemy.attack} damage!`,
         );
-        this._battleEnded.next('enemy');
-      }
 
-      this._playerTurn = true;
-    }
+        this._current.currentHP -= this._enemy.attack;
+        if (this._current.currentHP <= 0) {
+          this._current.currentHP = 0;
+          this._pushLog(
+            `You lost the fight with ${this._enemy.currentHP}hp remaining!`,
+          );
+          this._battleEnded.next('enemy');
+        }
+
+        setTimeout(() => {
+          this._playerTurn = true;
+        }, 1000);
+      }
+    }, 2000);
   }
 
   reset() {
@@ -110,9 +114,7 @@ export class BattleService {
         this._battleEnded.next('ran');
       } else {
         this._pushLog('You failed to run away!');
-        setTimeout(() => {
-          this._enemyAttack();
-        }, 1000);
+        this._enemyAttack();
       }
     }
   }
@@ -120,8 +122,8 @@ export class BattleService {
   attackEnemy() {
     if (this._enemy && this._current && this._playerTurn) {
       this._playerTurn = false;
-      this._current.attacking.next();
-      this._enemy.defending.next();
+      this._current.attacking.next('right');
+      this._enemy.defending.next(this._current.attack);
 
       this._pushLog(
         `You attacked ${this._enemy.name} with ${this._current.attack} damage!`,
@@ -136,9 +138,7 @@ export class BattleService {
         );
         this._battleEnded.next('player');
       } else {
-        setTimeout(() => {
-          this._enemyAttack();
-        }, 1000);
+        this._enemyAttack();
       }
     }
   }

@@ -24,7 +24,7 @@ import { JoinPipe } from './pipes/join.pipe';
     PokemonModalComponent,
     PokemonCardComponent,
     PokemonSelectorSummaryComponent,
-    SentenceCasePipe
+    SentenceCasePipe,
   ],
   imports: [CommonModule],
 })

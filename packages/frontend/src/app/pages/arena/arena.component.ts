@@ -4,6 +4,7 @@ import { forkJoin, switchMap } from 'rxjs';
 import { PokemonsService } from '../../shared/services/pokemons.service';
 import { Pokemon } from '../../shared/interfaces/pokemon';
 import { BattleService } from '../../shared/services/battle.service';
+import { ModalService } from '../../shared/services/modal.service';
 
 @Component({
   selector: 'app-arena',
@@ -16,17 +17,28 @@ export class ArenaComponent implements OnInit {
 
   endStatus: 'enemy' | 'player' | 'ran' | null = null;
 
-  takingDamages = false;
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private pokemonsService: PokemonsService,
     private battleService: BattleService,
+    private modalService: ModalService,
   ) {}
 
   get playing() {
     return this.battleService.playerTurn;
+  }
+
+  get logs() {
+    return this.battleService.fightLogs;
+  }
+
+  get player() {
+    return this.battleService.current;
+  }
+
+  get opponent() {
+    return this.battleService.enemy;
   }
 
   attack(): void {
@@ -37,12 +49,8 @@ export class ArenaComponent implements OnInit {
     this.battleService.run();
   }
 
-  get player() {
-    return this.battleService.current;
-  }
-
-  get opponent() {
-    return this.battleService.enemy;
+  openModal() {
+    this.modalService.open('pokemonModal');
   }
 
   restartFight(): void {
@@ -59,13 +67,6 @@ export class ArenaComponent implements OnInit {
     this.router.navigate(['/selector'], {
       queryParams: { enemy: this.enemy?.name, current: this.current?.name },
     });
-  }
-
-  takeDamage(): void {
-    this.takingDamages = true;
-    setTimeout(() => {
-      this.takingDamages = false;
-    }, 1000);
   }
 
   get statusColor(): string {

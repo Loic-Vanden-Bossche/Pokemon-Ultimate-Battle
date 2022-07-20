@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { RouterModule } from '@angular/router';
 import { PokemonComponent } from './arena/pokemon/pokemon.component';
+import { LoggerComponent } from './arena/logger/logger.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { PokemonComponent } from './arena/pokemon/pokemon.component';
     PokedexComponent,
     PokemonsSelectorComponent,
     PokemonComponent,
+    LoggerComponent,
   ],
   imports: [CommonModule, SharedModule, ScrollingModule, RouterModule],
 })

@@ -1,4 +1,7 @@
 <div *ngIf="!endStatus">
+  <div class="absolute bg-white left-5 top-5 h-32 w-72">
+    <app-logger [logs]="logs"></app-logger>
+  </div>
   <div
     class="h-2/3 w-2/3 top-1/2 left-1/2 absolute -translate-y-1/2 -translate-x-1/2"
     *ngIf="current && enemy"
@@ -39,6 +42,7 @@
             RUN
           </button>
           <button
+            (click)="openModal()"
             class="rounded bg-green-500 transition-all opacity-80 hover:opacity-100"
           >
             POKEMON
@@ -78,3 +82,4 @@
     </div>
   </div>
 </div>
+<app-pokemon-modal [pokemon]="current?.name || null"></app-pokemon-modal>

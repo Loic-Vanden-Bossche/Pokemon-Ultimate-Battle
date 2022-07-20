@@ -19,6 +19,8 @@ export class BattleService {
   private _enemy: Fighter | null = null;
   private _current: Fighter | null = null;
 
+  private _defaultMaxHP = 500;
+
   private _battleEnded = new Subject<'enemy' | 'player' | 'ran' | null>();
   private _playerTurn = false;
 
@@ -40,16 +42,29 @@ export class BattleService {
     return this._battleEnded;
   }
 
-  private static _pokemonToFighter(pokemon: Pokemon): Fighter {
+  private _pokemonToFighter(pokemon: Pokemon): Fighter {
     return {
       name: pokemon.name,
-      totalHP: 100,
-      currentHP: 100,
+      totalHP: this._defaultMaxHP + pokemon.defense,
+      currentHP: this._defaultMaxHP + pokemon.defense,
       attack: pokemon.attack,
       defense: pokemon.defense,
       attacking: new Subject(),
       defending: new Subject(),
     };
+  }
+
+  private _randomizeStart() {
+    this._playerTurn = Math.random() > 0.5;
+  }
+
+  private _checkStart() {
+    if (this._enemy && this._current) {
+      this._randomizeStart();
+      if (!this._playerTurn) {
+        this._enemyAttack();
+      }
+    }
   }
 
   private _enemyAttack() {
@@ -62,7 +77,6 @@ export class BattleService {
       );
 
       this._current.currentHP -= this._enemy.attack;
-
       if (this._current.currentHP <= 0) {
         this._current.currentHP = 0;
         this.fightLogs.push(
@@ -96,19 +110,6 @@ export class BattleService {
     }
   }
 
-  private _randomizeStart() {
-    this._playerTurn = Math.random() > 0.5;
-  }
-
-  private _checkStart() {
-    if (this._enemy && this._current) {
-      this._randomizeStart();
-      if (!this._playerTurn) {
-        this._enemyAttack();
-      }
-    }
-  }
-
   attackEnemy() {
     if (this._enemy && this._current && this._playerTurn) {
       this._playerTurn = false;
@@ -137,13 +138,13 @@ export class BattleService {
 
   registerEnemy(pokemon: Pokemon) {
     this.fightLogs.push(`${pokemon.name} appeared!`);
-    this._enemy = BattleService._pokemonToFighter(pokemon);
+    this._enemy = this._pokemonToFighter(pokemon);
     this._checkStart();
   }
 
   registerCurrent(pokemon: Pokemon) {
     this.fightLogs.push(`You chose ${pokemon.name} to fight!`);
-    this._current = BattleService._pokemonToFighter(pokemon);
+    this._current = this._pokemonToFighter(pokemon);
     this._checkStart();
   }
 }

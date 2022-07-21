@@ -2,6 +2,12 @@
   <div class="absolute z-10 left-5 top-5 h-52 w-96">
     <app-logger [logs]="logs"></app-logger>
   </div>
+  <div class="absolute z-10 right-5 top-5">
+    <app-timer
+      [playing]="this.timerPlaying"
+      (playSwitched)="onSwitchPlay($event)"
+    ></app-timer>
+  </div>
   <div
     class="h-2/3 w-2/3 top-1/2 left-1/2 absolute -translate-y-1/2 -translate-x-1/2"
     *ngIf="current && enemy"
@@ -20,7 +26,7 @@
     </div>
   </div>
   <div
-    *ngIf="playing"
+    *ngIf="playing && timerPlaying"
     @onPlayable
     class="font-['pokemon'] overflow-hidden absolute bottom-0 p-4 h-36 w-full"
   >
@@ -84,4 +90,9 @@
     </div>
   </div>
 </div>
-<app-pokemon-modal [pokemon]="current?.name || null"></app-pokemon-modal>
+<app-pokemon-modal
+  [controls]="true"
+  (controlsClicked)="onModalControls()"
+  [canControl]="modalControls"
+  [pokemon]="pokemonInModal || null"
+></app-pokemon-modal>

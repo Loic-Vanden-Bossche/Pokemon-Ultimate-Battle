@@ -30,7 +30,11 @@ export class ArenaComponent implements OnInit {
   enemy: Pokemon | null = null;
   current: Pokemon | null = null;
 
+  modalSelectedPokemon: 'current' | 'enemy' = 'current';
+
   endStatus: 'enemy' | 'player' | 'ran' | null = null;
+
+  timerPlaying = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -56,6 +60,16 @@ export class ArenaComponent implements OnInit {
     return this.battleService.enemy;
   }
 
+  get modalControls() {
+    return this.modalSelectedPokemon === 'current' ? 'right' : 'left';
+  }
+
+  get pokemonInModal() {
+    return this.modalSelectedPokemon === 'current'
+      ? this.current?.name
+      : this.enemy?.name;
+  }
+
   attack(): void {
     this.battleService.attackEnemy();
   }
@@ -65,7 +79,18 @@ export class ArenaComponent implements OnInit {
   }
 
   openModal() {
+    this.modalSelectedPokemon = 'current';
     this.modalService.open('pokemonModal');
+  }
+
+  onModalControls() {
+    this.modalSelectedPokemon =
+      this.modalSelectedPokemon === 'current' ? 'enemy' : 'current';
+  }
+
+  onSwitchPlay(playing: boolean) {
+    console.log('onSwitchPlay', playing);
+    this.timerPlaying = playing;
   }
 
   restartFight(): void {
@@ -89,9 +114,8 @@ export class ArenaComponent implements OnInit {
       case 'enemy':
         return 'red-500';
       case 'player':
-        return 'green-500';
       case 'ran':
-        return 'violet-500';
+        return 'green-500';
       default:
         return 'white';
     }

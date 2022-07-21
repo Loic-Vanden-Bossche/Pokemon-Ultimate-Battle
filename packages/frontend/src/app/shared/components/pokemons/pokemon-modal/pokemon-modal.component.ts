@@ -24,6 +24,12 @@ export class PokemonModalComponent implements OnChanges, OnDestroy {
     isEnemy: boolean;
   }> = new EventEmitter<{ pokemon: Pokemon; isEnemy: boolean }>();
 
+  @Input() controls = false;
+  @Input() canControl: 'left' | 'right' | 'both' = 'right';
+  @Output() controlsClicked: EventEmitter<'left' | 'right'> = new EventEmitter<
+    'left' | 'right'
+  >();
+
   private $destroy: Subject<void> = new Subject<void>();
 
   pokemonData: null | Pokemon = null;

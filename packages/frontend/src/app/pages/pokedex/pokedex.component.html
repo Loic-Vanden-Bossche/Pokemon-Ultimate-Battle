@@ -1,4 +1,11 @@
-<div class="pokedex-container">
+<div class="pokedex-container relative">
+  <div class="absolute font-['pokemon'] z-10 w-full top-5 left-5">
+    <input
+      [formControl]="searchCtrl"
+      class="h-12 w-1/3 rounded px-3 bg-white bg-opacity-80 outline-white border-white border-2"
+      placeholder="search pokemons..."
+    />
+  </div>
   <div #pokemonList class="pokemon-list">
     <cdk-virtual-scroll-viewport
       [itemSize]="cardHeight + cardPadding"

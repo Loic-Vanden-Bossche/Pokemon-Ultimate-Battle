@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { PokemonComponent } from './arena/pokemon/pokemon.component';
 import { LoggerComponent } from './arena/logger/logger.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TimerComponent } from './arena/timer/timer.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PokemonsSelectorComponent,
     PokemonComponent,
     LoggerComponent,
+    TimerComponent,
   ],
   imports: [
     CommonModule,

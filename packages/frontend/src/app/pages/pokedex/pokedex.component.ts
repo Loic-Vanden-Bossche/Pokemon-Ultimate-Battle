@@ -13,6 +13,7 @@ import { PokedexService } from '../../shared/services/pokedex.service';
 import { tap } from 'rxjs';
 import { Pokemon } from '../../shared/interfaces/pokemon';
 import { ModalService } from '../../shared/services/modal.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-pokedex',
@@ -22,6 +23,9 @@ import { ModalService } from '../../shared/services/modal.service';
 export class PokedexComponent implements OnInit, AfterViewInit {
   lines: string[][] = [];
   pokemons: string[] = [];
+  filteredPokemons: string[] = [];
+
+  searchCtrl = new FormControl('');
 
   @Input() inSelector = false;
 
@@ -67,8 +71,18 @@ export class PokedexComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.pokedexService
       .getPokemons()
-      .pipe(tap((pokemons) => (this.pokemons = pokemons)))
+      .pipe(
+        tap((pokemons) => (this.pokemons = pokemons)),
+        tap((pokemons) => (this.filteredPokemons = pokemons)),
+      )
       .subscribe(() => this.updateLines());
+
+    this.searchCtrl.valueChanges.subscribe((value) => {
+      this.filteredPokemons = this.pokemons.filter((pokemon) =>
+        pokemon.includes(value),
+      );
+      this.updateLines();
+    });
   }
 
   ngAfterViewInit() {
@@ -76,7 +90,7 @@ export class PokedexComponent implements OnInit, AfterViewInit {
   }
 
   updateLines() {
-    this.lines = this.pokemons.reduce((acc, pokemon, index) => {
+    this.lines = this.filteredPokemons.reduce((acc, pokemon, index) => {
       if (index % this.columns === 0) {
         acc.push([pokemon]);
       } else {

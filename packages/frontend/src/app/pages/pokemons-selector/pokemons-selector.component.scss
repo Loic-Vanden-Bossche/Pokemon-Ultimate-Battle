@@ -1,0 +1,15 @@
+.selector-container {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+
+  .pokedex-container {
+    width: 80%;
+  }
+
+  .pokemon-summary {
+    width: 20%;
+  }
+}

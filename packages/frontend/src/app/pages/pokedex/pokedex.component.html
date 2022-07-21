@@ -1,0 +1,38 @@
+<div class="pokedex-container relative">
+  <div class="absolute font-['pokemon'] z-10 w-full top-5 left-5">
+    <input
+      [formControl]="searchCtrl"
+      class="h-12 w-1/3 rounded px-3 bg-white bg-opacity-80 outline-white border-white border-2"
+      placeholder="search pokemons..."
+    />
+  </div>
+  <div #pokemonList class="pokemon-list">
+    <cdk-virtual-scroll-viewport
+      [itemSize]="cardHeight + cardPadding"
+      class="scroll-viewport"
+    >
+      <div class="virtual-scroll">
+        <div
+          *cdkVirtualFor="let line of lines"
+          [ngStyle]="{ 'margin-bottom': cardPadding + 'px' }"
+          class="grid-line"
+        >
+          <div
+            [ngStyle]="{ width: cardWidth + 'px', height: cardHeight + 'px' }"
+            *ngFor="let name of line"
+            (click)="openModal(name)"
+            class="pokemon-card"
+          >
+            <app-pokemon-card [pokemonName]="name"> </app-pokemon-card>
+          </div>
+        </div>
+      </div>
+    </cdk-virtual-scroll-viewport>
+  </div>
+</div>
+<app-pokemon-modal
+  [isSelectable]="inSelector"
+  (pokemonSelected)="onPokemonSelected($event)"
+  [pokemon]="selectedPokemon"
+>
+</app-pokemon-modal>

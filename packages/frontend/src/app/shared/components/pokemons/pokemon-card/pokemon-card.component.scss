@@ -1,0 +1,135 @@
+@font-face {
+  font-family: "pokemon";
+  src: url("../../../../../assets/fonts/pokemon.ttf");
+}
+
+.scaled-container {
+  cursor: pointer;
+
+  height: 100%;
+
+  $hoverEasing: cubic-bezier(0.23, 1, 0.32, 1);
+  $returnEasing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+  transition: all 0.2s ease;
+
+  transform: scale(1);
+
+  .loader-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .details-container {
+    height: 100%;
+  }
+
+  .background-container {
+    .background-image-container {
+      transition: all 0.6s ease;
+      transform: scale(1);
+      height: 100%;
+      width: 100%;
+    }
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+
+    img {
+      height: 100%;
+      width: 100%;
+      transition: filter 1s ease;
+      filter: blur(3px);
+    }
+  }
+
+  &:hover {
+    transition: all 0.3s ease;
+    transform: scale(1.4);
+
+    .background-container {
+      .background-image-container {
+        transition: all 0.6s ease;
+        transform: scale(1.2);
+
+        img {
+          transition: filter 0.3s ease;
+          filter: blur(4px);
+        }
+      }
+    }
+  }
+
+  .card-container {
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    height: 100%;
+    overflow: hidden;
+
+    transition: all 1s $returnEasing;
+
+    &:hover {
+      transition: all 0.6s $hoverEasing;
+
+      .card {
+        transition: all 0.6s ease;
+        transform: scale(1.05);
+      }
+    }
+
+    .card {
+      height: 100%;
+      position: relative;
+      transform: scale(1);
+      transition: all 0.6s ease;
+    }
+
+    .card-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin: 0 auto;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: center;
+
+      .card-sprite {
+        flex: 1;
+        padding: 10%;
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+        }
+      }
+
+      h1 {
+        font-size: 1.5rem;
+        text-align: center;
+        color: white;
+        font-family: "pokemon", serif;
+        text-shadow: 1px 1px 1px #919191,
+        1px 2px 1px #919191,
+        1px 3px 1px #919191,
+        1px 4px 1px #919191,
+        1px 5px 1px #919191,
+        1px 6px 1px #919191,
+        1px 7px 1px #919191,
+        1px 8px 1px #919191,
+        1px 9px 1px #919191,
+        1px 10px 1px #919191,
+        1px 18px 6px rgba(16,16,16,0.4),
+        1px 22px 10px rgba(16,16,16,0.2),
+        1px 25px 35px rgba(16,16,16,0.2),
+        1px 30px 60px rgba(16,16,16,0.4);
+      }
+    }
+  }
+}

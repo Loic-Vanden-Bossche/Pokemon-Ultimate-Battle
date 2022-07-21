@@ -1,0 +1,37 @@
+.pokedex-container {
+  margin: 0;
+  height: 100vh;
+
+  .pokemon-list {
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .scroll-viewport {
+      height: 100%;
+
+      .virtual-scroll {
+        padding: 3rem 2rem;
+
+        .grid-line {
+          display: flex;
+          justify-content: space-evenly;
+          flex-direction: row;
+          flex-wrap: nowrap;
+
+          .pokemon-card {
+            width: 300px;
+            height: 300px;
+
+            z-index: 0;
+
+            &:hover {
+              z-index: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}

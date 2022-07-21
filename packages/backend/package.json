@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "pokemon-backend",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -7,18 +7,19 @@
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "nest build",
+    "build-app": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
+    "start": "node dist/main",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
-    "lint": "eslint \"{src,apps,libs,test,scripts}/**/*.ts\" --fix",
+    "lint:fix": "eslint \"{src,apps,libs,test,scripts}/**/*.ts\" --fix",
+    "lint": "eslint \"{src,apps,libs,test,scripts}/**/*.ts\"",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
+    "deploy": "rimraf heroku && npm run build-app && mkdir heroku && cp package.json heroku/ && cp -r dist heroku/ && cp -r pokemons-data heroku/ && cd heroku && git init && git config --global user.email \"l.vandenbossche.jouvet@gmail.com\" && git config --global user.name \"Loïc Vanden Bossche\" && git remote add heroku https://heroku:%npm_config_heroku_api_key%@git.heroku.com/pokemon-ultimate-battle.git && git add . && git commit -m \"Deploy\" && git push --force heroku master",
     "generate:pokemons": "ts-node ./scripts/generate.ts"
   },
   "dependencies": {
@@ -26,13 +27,17 @@
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/swagger": "^5.2.1",
     "@types/ansi-colors": "^3.2.2",
     "@types/cli-progress": "^3.9.2",
     "ansi-colors": "^4.1.1",
     "cli-progress": "^3.10.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "swagger-ui-express": "^4.3.0",
+    "webpack": "^5.72.0",
+    "yaml": "^2.0.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",
@@ -53,7 +58,7 @@
     "ts-jest": "^27.0.3",
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
-    "tsconfig-paths": "^3.10.1",
+    "tsconfig-paths": "^3.14.1",
     "typescript": "^4.3.5"
   },
   "jest": {

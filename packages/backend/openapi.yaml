@@ -1,0 +1,87 @@
+openapi: 3.0.0
+paths:
+  /:
+    get:
+      operationId: AppController_getHealth
+      summary: Checks API health
+      parameters: []
+      responses:
+        "200":
+          description: ""
+  /pokemons:
+    get:
+      operationId: PokemonsController_findAll
+      summary: Get all pokemons-data
+      parameters: []
+      responses:
+        "200":
+          description: ""
+  /pokemons/names:
+    get:
+      operationId: PokemonsController_list
+      summary: Get an array of pokemon' names
+      parameters: []
+      responses:
+        "200":
+          description: ""
+  /pokemons/types:
+    get:
+      operationId: PokemonsController_findTypes
+      summary: Get a specific pokemon by id
+      parameters: []
+      responses:
+        "200":
+          description: ""
+  "/pokemons/{name}":
+    get:
+      operationId: PokemonsController_findOne
+      summary: Get a specific pokemon by id
+      parameters:
+        - name: name
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+  "/pokemons/{name}/gif/front":
+    get:
+      operationId: PokemonsController_frontSprite
+      summary: Get front sprite for a specific pokemon
+      parameters:
+        - name: name
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+  "/pokemons/{name}/gif/back":
+    get:
+      operationId: PokemonsController_backSprite
+      summary: Get back sprite for a specific pokemon
+      parameters:
+        - name: name
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+info:
+  title: Collecty API
+  description: The Collecty API description
+  version: "0.1"
+  contact: {}
+tags: []
+servers: []
+components:
+  securitySchemes:
+    cookie:
+      type: apiKey
+      in: cookie
+      name: connect.sid
+  schemas: {}

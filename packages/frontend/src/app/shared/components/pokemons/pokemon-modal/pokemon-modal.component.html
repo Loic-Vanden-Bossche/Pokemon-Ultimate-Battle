@@ -1,0 +1,100 @@
+<app-modal id="pokemonModal">
+  <div
+    class="text-white w-10/12 h-3/4 flex flex-col flex-nowrap sm:w-3/4 md:w-2/3 xl:w-3/6 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 absolute overflow-hidden bg-gray-200 rounded drop-shadow-xl"
+  >
+    <div *ngIf="controls">
+      <div
+        *ngIf="canControl === 'left' || canControl === 'both'"
+        (click)="controlsClicked.emit('left')"
+        class="absolute z-10 cursor-pointer bottom-5 left-5"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          class="bi bi-arrow-left h-10 w-10"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+          />
+        </svg>
+      </div>
+      <div
+        *ngIf="canControl === 'right' || canControl === 'both'"
+        (click)="controlsClicked.emit('right')"
+        class="absolute z-10 cursor-pointer bottom-5 right-5"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          class="bi bi-arrow-right h-10 w-10"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
+          />
+        </svg>
+      </div>
+    </div>
+    <div *ngIf="pokemonData" class="h-full bg-black">
+      <div
+        class="fixed top-0 left-0 w-full h-full bg-center bg-cover blur-sm"
+        [ngStyle]="{
+          'background-image':
+            'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.5105392498796393) 37%, rgba(0,0,0,0.7010154403558299) 78%, rgba(0,0,0,0.9026961126247374) 100%), url(' +
+            getBackgroundUrl() +
+            ')'
+        }"
+      ></div>
+      <div class="px-10 py-10 flex absolute items-center h-full w-full">
+        <img alt="" class="w-1/3" [src]="pokemonData.frontSprite" />
+        <div class="h-full flex font-['pokemon']">
+          <div class="h-full ml-10 opacity-75 w-1 rounded bg-white"></div>
+          <div class="h-full w-full px-5 flex flex-col">
+            <h1 class="text-5xl">
+              {{ pokemonData.name | titlecase }}
+            </h1>
+            <div class="mt-6 text-xl gap-2 grid grid-cols-2">
+              <p>Types :</p>
+              <p>{{ types }}</p>
+
+              <p>Height :</p>
+              <p>{{ pokemonData.height | number: '1.1-1' }} m</p>
+
+              <p>Attack :</p>
+              <p>{{ pokemonData.attack }}</p>
+
+              <p>Defense :</p>
+              <p>{{ pokemonData.defense }}</p>
+
+              <p>SpecialAttack :</p>
+              <p>{{ pokemonData.specialAttack }}</p>
+
+              <p>SpecialDefense :</p>
+              <p>{{ pokemonData.specialDefense }}</p>
+
+              <p>Abilities :</p>
+              <p>{{ abilities }}</p>
+            </div>
+            <div class="mt-auto" *ngIf="isSelectable">
+              <button
+                class="rounded px-3 h-12 mr-5 bg-red-500"
+                (click)="selectPokemon(true)"
+              >
+                Add as enemy
+              </button>
+              <button
+                class="rounded px-3 h-12 bg-green-500"
+                (click)="selectPokemon()"
+              >
+                Add as current
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-modal>

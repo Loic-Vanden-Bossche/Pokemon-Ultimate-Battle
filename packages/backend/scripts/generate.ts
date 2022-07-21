@@ -17,7 +17,7 @@ interface PokemonAPIResponse {
   results: PokemonAPIResult[];
 }
 
-const pokemonsPath = path.join(process.cwd(), 'pokemons');
+const pokemonsPath = path.join(process.cwd(), 'pokemons-data');
 
 const getAbilities = async (abilitiesUrls: string[]): Promise<Ability[]> => {
   const rawAbilities = await Promise.all(
@@ -39,7 +39,7 @@ const getAbilities = async (abilitiesUrls: string[]): Promise<Ability[]> => {
 
 const getTypes = (types: any[]): PokemonType[] => {
   return types.map((t) => ({
-    id: parseInt(new RegExp(/\/[0-9]*\/$/).exec(t.url)[0].replace(/\//gm, '')),
+    id: parseInt(new RegExp(/\/\d*\/$/).exec(t.url)[0].replace(/\//gm, '')),
     name: t.name,
   }));
 };
@@ -100,10 +100,13 @@ const retrieveAll = async (): Promise<void> => {
   }
 
   const progress = new Bar({
-    format: 'Pokemons retrieving |' + colors.yellow('{bar}') + '| {percentage}% || {value}/{total} Pokemons || {currentChunk}/{totalChunks} Chunks',
+    format:
+      'Pokemons retrieving |' +
+      colors.yellow('{bar}') +
+      '| {percentage}% || {value}/{total} Pokemons || {currentChunk}/{totalChunks} Chunks',
     barCompleteChar: '\u2588',
     barIncompleteChar: '\u2591',
-    hideCursor: true
+    hideCursor: true,
   });
 
   const chunkSize = 50;
@@ -133,15 +136,15 @@ const retrieveAll = async (): Promise<void> => {
 
         await axios.get<any>(pokemon.url).then((response) => {
           progress.update(++processedPokemons, {
-            currentChunk
+            currentChunk,
           });
           return formatOne(response.data)
-            .then((pokemon) => {
-              fs.writeFileSync(filePath, JSON.stringify(pokemon));
+            .then((formattedPokemon) => {
+              fs.writeFileSync(filePath, JSON.stringify(formattedPokemon));
             })
             .catch((err) => {
               fs.writeFileSync(filePath + '.error', err.message);
-            })
+            });
         });
       }),
     );

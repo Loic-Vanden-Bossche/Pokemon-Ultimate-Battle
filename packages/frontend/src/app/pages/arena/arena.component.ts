@@ -36,14 +36,6 @@ export class ArenaComponent implements OnInit {
 
   timerPlaying = true;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private pokemonsService: PokemonsService,
-    private battleService: BattleService,
-    private modalService: ModalService,
-  ) {}
-
   get playing() {
     return this.battleService.playerTurn;
   }
@@ -69,6 +61,26 @@ export class ArenaComponent implements OnInit {
       ? this.current?.name
       : this.enemy?.name;
   }
+
+  get statusColor(): string {
+    switch (this.endStatus) {
+      case 'enemy':
+        return 'red-500';
+      case 'player':
+      case 'ran':
+        return 'green-500';
+      default:
+        return 'white';
+    }
+  }
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private pokemonsService: PokemonsService,
+    private battleService: BattleService,
+    private modalService: ModalService,
+  ) {}
 
   attack(): void {
     this.battleService.attackEnemy();
@@ -107,18 +119,6 @@ export class ArenaComponent implements OnInit {
     this.router.navigate(['/selector'], {
       queryParams: { enemy: this.enemy?.name, current: this.current?.name },
     });
-  }
-
-  get statusColor(): string {
-    switch (this.endStatus) {
-      case 'enemy':
-        return 'red-500';
-      case 'player':
-      case 'ran':
-        return 'green-500';
-      default:
-        return 'white';
-    }
   }
 
   ngOnInit(): void {

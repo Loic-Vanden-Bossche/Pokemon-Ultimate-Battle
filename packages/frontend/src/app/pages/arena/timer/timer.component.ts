@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 
 @Component({
   selector: 'app-timer',
@@ -7,8 +14,17 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class TimerComponent implements OnInit {
   @Input() playing = true;
   @Output() playSwitched: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   currentTime = new Date(0, 0, 0);
   seconds = 0;
+
+  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(
+    event: KeyboardEvent,
+  ) {
+    if (event.key === 'Escape') {
+      this.switchPlaying();
+    }
+  }
 
   ngOnInit() {
     this.initializeTimer();

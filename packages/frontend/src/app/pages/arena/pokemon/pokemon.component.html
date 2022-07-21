@@ -1,0 +1,28 @@
+<div
+  class="font-['pokemon'] transition h-full"
+  [ngClass]="displayAttack ? getAttackAnimationClasses(displayAttack) : []"
+  *ngIf="fighter && pokemon"
+>
+  <h1 class="-translate-y-6 text-2xl text-center text-white">
+    {{ pokemon.name | titlecase }}
+  </h1>
+  <div class="h-2 w-full bg-white rounded-lg overflow-hidden -translate-y-4">
+    <div
+      class="transition-all h-full bg-red-500"
+      [ngStyle]="{ width: lifePercentage }"
+    ></div>
+  </div>
+  <div
+    class="text-red-500 damageIndicator text-2xl font-bold"
+    @onDamages
+    *ngIf="displayDamages"
+  >
+    <h1>-{{ displayDamages }}</h1>
+  </div>
+  <img
+    class="h-full"
+    [ngClass]="displayDamages ? 'damageAnimation' : ''"
+    [src]="isEnemy ? pokemon.frontSprite : pokemon.backSprite"
+    alt=""
+  />
+</div>

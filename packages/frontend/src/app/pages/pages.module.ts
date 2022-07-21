@@ -7,6 +7,9 @@ import { PokemonsSelectorComponent } from './pokemons-selector/pokemons-selector
 import { SharedModule } from '../shared/shared.module';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { RouterModule } from '@angular/router';
+import { PokemonComponent } from './arena/pokemon/pokemon.component';
+import { LoggerComponent } from './arena/logger/logger.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,16 @@ import { RouterModule } from '@angular/router';
     MenuComponent,
     PokedexComponent,
     PokemonsSelectorComponent,
+    PokemonComponent,
+    LoggerComponent,
   ],
-  imports: [CommonModule, SharedModule, ScrollingModule, RouterModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    ScrollingModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class PagesModule {}
